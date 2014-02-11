@@ -1,0 +1,26 @@
+<p>Is it clear enough to observe the interaction between <code>z</code> and <code>x</code> from these bubble plots?</p>
+
+<p><img src="http://i.imgur.com/Mv8F4.png" alt="No interaction" /></p>
+
+<p>If there is no interaction between <code>x</code> and <code>z</code>, the size of bubbles will increase at the <em>same</em> rate while either <code>x</code> or <code>z</code> is fixed.</p>
+
+<p><img src="http://i.imgur.com/FzsUH.png" alt="Positive Interaction" /></p>
+
+<p>But when interaction exists, the rate of increasing will be different.</p>
+
+<p>R code:</p>
+
+<div class="highlight"><pre><code class="r">sq <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span>
+x <span class="o">=</span> rep<span class="p">(</span>sq<span class="p">,</span> <span class="m">10</span><span class="p">)</span>
+z <span class="o">=</span> rep<span class="p">(</span>sq<span class="p">,</span> each <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+y <span class="o">=</span> c<span class="p">(</span>outer<span class="p">(</span>sq<span class="p">,</span> sq<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> z<span class="p">)</span> <span class="m">10</span> <span class="o">+</span> <span class="m">1</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">0.5</span> <span class="o">*</span>
+   z <span class="o">+</span> <span class="m">0.5</span> <span class="o">*</span> x <span class="o">*</span> z <span class="o">+</span> runif<span class="p">(</span><span class="m">1</span><span class="p">)))</span>
+symbols<span class="p">(</span>x<span class="p">,</span> z<span class="p">,</span> y<span class="p">,</span> bg <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> fg <span class="o">=</span> <span class="s">&quot;yellow&quot;</span><span class="p">,</span>
+   main <span class="o">=</span> <span class="s">&quot;y = 10 + x + 0.5 * z + 0.5 * x * z + error&quot;</span><span class="p">)</span>
+y <span class="o">=</span> c<span class="p">(</span>outer<span class="p">(</span>sq<span class="p">,</span> sq<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> z<span class="p">)</span> <span class="m">1</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">0.5</span> <span class="o">*</span> z <span class="o">+</span> runif<span class="p">(</span><span class="m">1</span><span class="p">)))</span>
+symbols<span class="p">(</span>x<span class="p">,</span> z<span class="p">,</span> y<span class="p">,</span> bg <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> fg <span class="o">=</span> <span class="s">&quot;yellow&quot;</span><span class="p">,</span>
+  main <span class="o">=</span> <span class="s">&quot;y = 10 + x + 0.5 * z + error&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+

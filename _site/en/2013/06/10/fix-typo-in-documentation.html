@@ -1,0 +1,52 @@
+<p><img src="http://i.imgur.com/j9NYXiQ.png" alt="help me with Github pull requests" /></p>
+
+<p>So I just got yet yet another
+<a href="http://yihui.name/knitr/demo/sweave/#comment-924948061">comment</a> saying
+"you have a typo in your documentation". While I do appreciate these kind
+reminders, I think it might be a good exercise for those who want to try GIT
+and <a href="https://help.github.com/articles/using-pull-requests">Github pull
+requests</a>, which make
+it possible for you to contribute to open source and fix obvious problems
+<em>with no questions being asked</em> -- just do it yourself, and send the changes
+to the original author(s) through Github.</p>
+
+<p>The official documentation for Github pull requests is a little bit verbose
+for beginners. Basically what you need to do for simple tasks are:</p>
+
+<ol>
+<li>click the <code>Fork</code> button and clone the repository in your own account;</li>
+<li>make the changes in your cloned version;</li>
+<li>push to your repository;</li>
+<li>click the <code>Pull Request</code> button to send a request to the original author;</li>
+</ol>
+
+
+<p>For trivial changes, sometimes I accept them on my cell phone while I'm
+still in bed. No extra communication is needed.</p>
+
+<p>Occasionally I see reports of this kind of trivial documentation changes in
+the R-devel mailing list, and I believe that is just horribly inefficient.
+You could have done this quietly and quickly, and the developers could have
+merged the changes with a single mouse click. (Oh, okay, well, you know,
+SVN, mailing lists, ...)</p>
+
+<p>For the <a href="https://github.com/yihui/knitr"><strong>knitr</strong> repository</a>, it has two
+branches: <code>master</code> and <code>gh-pages</code>. The R package lives in the <code>master</code>
+branch, and the <strong>knitr</strong> website lives in the <code>gh-pages</code> branch. If you
+want to fix any problems in the website, just check out the <code>gh-pages</code>:</p>
+
+<pre><code>git checkout gh-pages
+</code></pre>
+
+<p>All pages were written in Markdown, so edit them with your favorite text
+editor. For example, as the above comment pointed out, I omitted a right
+parenthesis <code>)</code> in <code>_posts/2012-02-24-sweave.md</code>, and you just add it, save
+the file, write a GIT commit message, push to your repository and send the
+pull request.</p>
+
+<p>I know I can do this by myself in five seconds, and it takes me way more
+time to write this blog post, but I just want everybody to know how people
+with different skill levels can play their roles in software development.</p>
+
+<p>Let's see how many minutes it takes for the pull request to come after I
+publish this blog post. Hurry!! :)</p>

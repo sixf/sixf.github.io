@@ -1,0 +1,35 @@
+<p>Two months ago <a href="https://stat.ethz.ch/pipermail/ess-help/2012-August/subject.html">there was a discussion</a> in the ESS mailing list about Emacs/ESS started by <a href="https://stat.ethz.ch/pipermail/ess-help/2012-August/008067.html">Paul Johnson</a>, who claimed "Emacs Has No Learning Curve". While this sounds impossible, he really has some good points, e.g. he encourages beginners to look at the menu. I think this is a good way to learn Emacs. In the very beginning, who can remember <code>C-x C-f</code>? If one finds it hard even to open a file, how is one supposed to move on? (I taught my wife Emacs/ESS, unfortunately, in the wrong way)</p>
+
+<p>Then <a href="https://stat.ethz.ch/pipermail/ess-help/2012-August/008084.html">I went off-topic</a> by discussing Emacs vs <a href="http://www.lyx.org">LyX</a> as the editor for LaTeX, and I quoted <a href="http://cmenzel.org/LyXvsEmacs.pdf">an example</a> by Chris Menzel. This is LyX:</p>
+
+<p><img src="http://i.imgur.com/nvbqz.png" alt="LyX for LaTeX" /></p>
+
+<p>And this is Emacs:</p>
+
+<p><img src="http://i.imgur.com/0Uswf.png" alt="Emacs for LaTeX" /></p>
+
+<p>The difference is obvious. I find it difficult to understand why there are so many people who enjoy reading LaTeX code, which makes my eyes bleed. My experience of promoting LyX was often unsuccessful, and I feel some people were born to hate GUI. <a href="https://stat.ethz.ch/pipermail/ess-help/2012-August/008109.html">Paul Thompson</a>, the last person in that discussion thread, wrote these final comments:</p>
+
+<blockquote><p>There is no such thing as LaTeX without <code>\</code></p>
+
+<p>Sorry, folks, but that whole idea is whack. Totally whack. It's like onions without tears. Onions have good qualities, but there is a cost. LaTeX has good qualities. The cost is <code>\</code>.</p>
+
+<p>If you want formatting without <code>\</code>, use Word. You don't see a single <code>\</code> but you don't see anything of any value.</p>
+
+<p>The whole POINT of a markup language is to see the markup. If you don't want to see the markup, use a WYSIWYG editor like Word.</p>
+
+<p>Editors which do LaTeX hiding the markup are just another WYSIWYG 3rd order approximation.</p></blockquote>
+
+<p>Frankly speaking, I agree with none of the above comments. LaTeX is excellent, but that does not mean I must read the backslashes for the rest of my life. LyX has done a wonderful job of hiding <code>\</code> while giving us full power of LaTeX. If there is anything that cannot be done with GUI in LyX, we always have the ERT (Evil Red Text), i.e. we can input raw LaTeX code in LyX (<code>Ctrl + L</code>). LyX gives us a human-readable interface to LaTeX without sacrificing anything. The whole point of a markup language is not to read the source. If we are to see anything, we see the output. For example, we read a web page instead of its HTML code.</p>
+
+<p>It is undeniable that sometimes we need to read the source code for other purposes such as debugging. LyX has a menu <code>View =&gt; View Source</code> to allow one to view the LaTeX source of the current document, which is something I often do. I appreciate the importance of source code, but LaTeX is an exception in my eyes. With LyX, I do not have to start every single LaTeX document with <code>\documentclass{}</code> and remember all the gory commands about the <strong>geometry</strong> or <strong>hyperref</strong> package (top margin, inner margin, outer margin, page width, bookmarks, etc etc). That is why I managed to write the documentation of my R packages quickly (e.g. <a href="https://github.com/yihui/knitr/tree/master/inst/examples"><strong>knitr</strong></a>, <a href="https://github.com/yihui/formatR/tree/master/inst/doc"><strong>formatR</strong></a> and <a href="https://github.com/yihui/Rd2roxygen/tree/master/inst/doc"><strong>Rd2roxygen</strong></a>, etc).</p>
+
+<p>Finally, I do not recommend LaTeX novices to try LyX. It is a bad idea in general to use GUI if you do not really understand it.</p>
+
+<p>I know this promotion for LyX is, as usual, not going to help. People simply walk by.</p>
+
+<p><img src="http://forgifs.com/gallery/d/171709-3/Cat-ignores-girl-like-a-boss.gif" alt="" /></p>
+
+<p>Image <a href="http://researchinprogress.tumblr.com/post/34403093418/how-i-feel-at-poster-presentations">via</a>. Also see <a href="http://researchinprogress.tumblr.com/post/34692517685/changing-just-a-tiny-little-bit-in-my-latex-tabular">Changing just a tiny little bit in my LaTeX tabular</a>.</p>
+
+<p><img src="http://i.imgur.com/uarWJuS.gif" alt="" /></p>

@@ -1,0 +1,41 @@
+<p><a href="http://www.jstatsoft.org/v34/i05/paper">A new paper on the &alpha;-convex hull</a> appeared in the Journal of Statistical Software today. The &alpha;-convex hull is an interesting problem which caught my attention long time ago but I didn't know a solution then. R has a function <code>chull()</code> which can generate (indices of) the convex hull for a series of points. Now we can use the R package <strong>alphahull</strong> to compute the &alpha;-convex hull. For those who are not familiar with the &alpha;-convex hull, the animation below might be a good illustration for the difference between a convex hull and an &alpha;-convex hull. Note how the parameter &alpha; affects the shape of the hull:</p>
+
+<p><img src="http://i.imgur.com/L7Ijj.gif" alt="alpha-convex hull with different alpha's" /></p>
+
+<p>The above animation can be reproduced with the code below (uncomment the lines to create a GIF animation with the <strong>animation</strong> package):</p>
+
+<div class="highlight"><pre><code class="r">set.seed<span class="p">(</span><span class="m">123</span><span class="p">)</span>
+theta <span class="o">=</span> runif<span class="p">(</span>n <span class="o">&lt;-</span> <span class="m">300</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">2</span> <span class="o">*</span> pi<span class="p">)</span>
+r <span class="o">=</span> sqrt<span class="p">(</span>runif<span class="p">(</span>n<span class="p">,</span> <span class="m">0.25</span><span class="o">^</span><span class="m">2</span><span class="p">,</span> <span class="m">0.5</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
+x <span class="o">=</span> cbind<span class="p">(</span><span class="m">0.5</span> <span class="o">+</span> r <span class="o">*</span> cos<span class="p">(</span>theta<span class="p">),</span> <span class="m">0.5</span> <span class="o">+</span> r <span class="o">*</span> sin<span class="p">(</span>theta<span class="p">))</span>
+
+<span class="c1">## library(animation)</span>
+<span class="c1">## saveMovie({</span>
+  library<span class="p">(</span>alphahull<span class="p">)</span>
+  par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> xaxt <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> yaxt <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> bg <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>alpha <span class="kr">in</span> seq<span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">-0.01</span><span class="p">))</span> <span class="p">{</span>
+    plot<span class="p">(</span>ahull<span class="p">(</span>x<span class="p">,</span> alpha <span class="o">=</span> alpha<span class="p">),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">,</span>
+      panel.last <span class="o">=</span> text<span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> sprintf<span class="p">(</span><span class="s">&quot;alpha = %.2f&quot;</span><span class="p">,</span> alpha<span class="p">),</span> cex <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="c1">## }, moviename = &quot;alpha-convex-hull&quot;)</span>
+</code></pre></div>
+
+
+<p>Again, you may interactively play with the convex hull using the <strong>gWidgets</strong> package:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1">## install.packages(&#39;gWidgetsRGtk2&#39;) first if not installed</span>
+library<span class="p">(</span>gWidgetsRGtk2<span class="p">)</span>
+options<span class="p">(</span>guiToolkit <span class="o">=</span> <span class="s">&quot;RGtk2&quot;</span><span class="p">)</span>
+
+g <span class="o">=</span> glayout<span class="p">(</span>container <span class="o">=</span> gwindow<span class="p">(</span><span class="s">&quot;alpha-convex hull demo&quot;</span><span class="p">))</span>
+g<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span> expand <span class="o">=</span> <span class="kc">TRUE</span><span class="p">]</span> <span class="o">=</span> ggraphics<span class="p">(</span>container <span class="o">=</span> g<span class="p">)</span>
+g<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;alpha&quot;</span>
+g<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> expand <span class="o">=</span> <span class="kc">TRUE</span><span class="p">]</span> <span class="o">=</span> gslider<span class="p">(</span>from <span class="o">=</span> <span class="m">0</span><span class="p">,</span> to <span class="o">=</span> <span class="m">.3</span><span class="p">,</span> value <span class="o">=</span> <span class="m">.2</span><span class="p">,</span> by <span class="o">=</span> <span class="m">.01</span><span class="p">,</span>
+    container <span class="o">=</span> g<span class="p">,</span> handler <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>h<span class="p">,</span> <span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
+        par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> xaxt <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> yaxt <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">)</span>
+        plot<span class="p">(</span>ahull<span class="p">(</span>x<span class="p">,</span> alpha <span class="o">=</span> svalue<span class="p">(</span>h<span class="o">$</span>obj<span class="p">)),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> ann <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+    <span class="p">})</span>
+</code></pre></div>
+
+
+

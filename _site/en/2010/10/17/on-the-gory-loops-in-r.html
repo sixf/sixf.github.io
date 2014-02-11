@@ -1,0 +1,138 @@
+<p>This blog post is mainly for <a href="http://www.public.iastate.edu/~hofmann/stat579/">Stat 579</a> students on <a href="http://www.public.iastate.edu/~hofmann/stat579/homework/week7-functions.html">the homework for week 7</a>, since I received too many "gory" loops in the homework submissions and I think it would help a bit to write my thoughts on R loops for beginners. The immortal motto for newbies in programming is:</p>
+
+<blockquote><p>If you want to make an apple pie from scratch, <strong>you must first create the universe</strong>.</p>
+
+<p>Carl Sagan</p></blockquote>
+
+<p>There have been endless wars on which programming language is better than others, but my view point is, that is nothing but the <em>balance</em> between the code performance and the amount of work for programmers. In an extreme sense, almost all languages give you the ability to create the universe, but you do not really have to if you just want to make an apple pie.</p>
+
+<p>R was born after S, a language which was invented <em>to turn ideas into software, <strong>quickly</strong> and <strong>faithfully</strong></em> and received <a href="http://cm.bell-labs.com/cm/ms/departments/sia/S/">the ACM Software System Award</a> in 1998. Before the S language, statisticians often had to write "gory" low-level computing routines to do data analysis and statistical computation, including those "gory" loops, of course. For example, imagine what you have to do to compute the correlation coefficients in C.</p>
+
+<p>R has wrapped a lot of common tasks in lower-level programming languages (mainly C and Fortran) to make it easier to call and faster to compute (R's (explicit) loops are generally slower than low-level languages), which frees statisticians from paying too much attention to the gory details in computation. However, the consequence is we have got too many tools in our hands, of which we are often unaware. I have no quick solution on this problem -- we have to learn more about the capability of R through many ways, e.g. reading the R-help mailing list, asking experts, doing daily work with R, reading the source code of R functions and playing with the examples in help pages, etc.</p>
+
+<p>Being specific on this homework, I saw most submissions were using long loops, which is absolutely OK, since that was what we learned in class, and it is important to know how to write loops. Some loops are inevitable, but some are not. The rule of thumb is, functions do exist in R if you natural reaction to a problem is "why does not R have this common functionality?". For example, several students used this function to concatenate all elements of a vector into a single string:</p>
+
+<div class="highlight"><pre><code class="r">to.string <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+  string <span class="o">&lt;-</span> x<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+  <span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">2</span><span class="o">:</span>length<span class="p">(</span>x<span class="p">))</span> <span class="p">{</span>
+    string <span class="o">&lt;-</span> paste<span class="p">(</span>string<span class="p">,</span> x<span class="p">[</span>i<span class="p">],</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="kr">return</span><span class="p">(</span>string<span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>But in fact you will get a neat solution if you take a closer look at the help page of <code>paste()</code>:</p>
+
+<div class="highlight"><pre><code class="r">to.string<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+<span class="c1"># [1] &quot;12345678910&quot;</span>
+<span class="c1">## equivalently but more elegantly</span>
+paste<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> collapse <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="c1"># [1] &quot;12345678910&quot;</span>
+</code></pre></div>
+
+
+<p>This is one of the thousands of stories in which we created the universe to make an apple pie without knowing there was a perfect apple pie machine. Sometimes the feeling that we have to power to create the universe is so strong that we do so even we know the existence of the apple pie machine, e.g. here is a function to count the number of 0's and 1's in a vector:</p>
+
+<div class="highlight"><pre><code class="r">freqTable01 <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+    <span class="c1">## initial frequencies are 0; add by 1 in the loop</span>
+    count1 <span class="o">=</span> <span class="m">0</span>
+    count0 <span class="o">=</span> <span class="m">0</span>
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> c<span class="p">(</span><span class="m">1</span><span class="o">:</span>length<span class="p">(</span>x<span class="p">)))</span> <span class="p">{</span>
+        <span class="kr">if</span> <span class="p">(</span>x<span class="p">[</span>i<span class="p">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+            count1 <span class="o">=</span> count1 <span class="o">+</span> <span class="m">1</span>
+        <span class="p">}</span>
+        <span class="kr">else</span> <span class="p">{</span>
+            count0 <span class="o">=</span> count0 <span class="o">+</span> <span class="m">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">## create a factor with count1 TRUE&#39;s and count0 FALSE&#39;s</span>
+    xf <span class="o">=</span> factor<span class="p">(</span>rep<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;TRUE&quot;</span><span class="p">,</span> <span class="s">&quot;FALSE&quot;</span><span class="p">),</span> c<span class="p">(</span>count1<span class="p">,</span> count0<span class="p">)))</span>
+    <span class="c1">## return the frequency table</span>
+    <span class="kr">return</span><span class="p">(</span>table<span class="p">(</span>xf<span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>The loop is pretty much like low-level languages like C/Fortran: we assign initial values to a recording variable, do the loop and collect the result. But frequency tables are so common in statistics that it is hard to exclude such a functionality in R, <code>table()</code>, as we see in the last but one line of the code above.</p>
+
+<p>Now I give my solutions as promised:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1">## break a vector into pieces of length M</span>
+break_vec <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> M<span class="p">)</span> <span class="p">{</span>
+    n <span class="o">=</span> length<span class="p">(</span>x<span class="p">)</span>
+    <span class="kr">if</span> <span class="p">(</span>M <span class="o">&gt;</span> n<span class="p">)</span>
+        stop<span class="p">(</span><span class="s">&quot;the block size M = &quot;</span><span class="p">,</span> M<span class="p">,</span> <span class="s">&quot; is greater than length of x (&quot;</span><span class="p">,</span>
+            n<span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">)</span>
+    x0 <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span>n <span class="o">-</span> M <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+    substring<span class="p">(</span>paste<span class="p">(</span>x<span class="p">,</span> collapse <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">),</span> x0<span class="p">,</span> x0 <span class="o">+</span> M <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">## Q2: return a frequency table of blocks of length M; M = 1 for Q1</span>
+freq_block <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> M<span class="p">)</span> <span class="p">{</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span>all<span class="p">(</span>x <span class="o">%in%</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))))</span> stop<span class="p">(</span><span class="s">&quot;not a binary sequence&quot;</span><span class="p">)</span>
+    table<span class="p">(</span>break_vec<span class="p">(</span>x<span class="p">,</span> M<span class="p">),</span> dnn <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">## Q3: the function rle() is exactly what we need; see ?rle</span>
+<span class="c1">## Q4: match a pattern and return the frequency</span>
+pattern_match <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> pattern<span class="p">)</span> <span class="p">{</span>
+    sum<span class="p">(</span>break_vec<span class="p">(</span>x<span class="p">,</span> length<span class="p">(</span>pattern<span class="p">))</span> <span class="o">==</span> paste<span class="p">(</span>pattern<span class="p">,</span> collapse <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>There are no explicit loops above. Instead, all loops are implicit, i.e. let the more efficient low-level languages do the loops for R. This is called <em>vectorization</em>. We can benefit a lot from vectorization -- it is not only a matter of less heavier coding jobs, but also a huge improvement in terms of efficiency (speed) in general. If we write the above functions with loops, it will look like this (for Q2 only):</p>
+
+<div class="highlight"><pre><code class="r">break_vec1 <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> M<span class="p">)</span> <span class="p">{</span>
+    n <span class="o">=</span> length<span class="p">(</span>x<span class="p">)</span>
+    <span class="kr">if</span> <span class="p">(</span>M <span class="o">&gt;</span> n<span class="p">)</span>
+        stop<span class="p">(</span><span class="s">&quot;the block size M = &quot;</span><span class="p">,</span> M<span class="p">,</span> <span class="s">&quot; is greater than length of x (&quot;</span><span class="p">,</span>
+            n<span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">)</span>
+    res <span class="o">=</span> character<span class="p">(</span>n <span class="o">-</span> M <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>res<span class="p">))</span> res<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> paste<span class="p">(</span>x<span class="p">[</span>i <span class="o">+</span> <span class="p">(</span><span class="m">1</span><span class="o">:</span>M<span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">],</span>
+        collapse <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    res
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>A simple timing test shows that it is much slower than my first version:</p>
+
+<div class="highlight"><pre><code class="r">x2 <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+    <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
+    <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+    <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="c1">## break the vector into 40-bit blocks for 1000 times</span>
+system.time<span class="p">(</span>replicate<span class="p">(</span><span class="m">1000</span><span class="p">,</span> break_vec<span class="p">(</span>x2<span class="p">,</span> <span class="m">40</span><span class="p">)))</span>
+<span class="c1">#   user  system elapsed</span>
+<span class="c1">#   0.99    0.00    0.98</span>
+<span class="c1">## for-loops are 15 times slower</span>
+system.time<span class="p">(</span>replicate<span class="p">(</span><span class="m">1000</span><span class="p">,</span> break_vec1<span class="p">(</span>x2<span class="p">,</span> <span class="m">40</span><span class="p">)))</span>
+<span class="c1">#   user  system elapsed</span>
+<span class="c1">#  15.43    0.00   15.46</span>
+<span class="c1">## the two functions return identical results</span>
+identical<span class="p">(</span>break_vec<span class="p">(</span>x2<span class="p">,</span> <span class="m">40</span><span class="p">),</span> break_vec1<span class="p">(</span>x2<span class="p">,</span> <span class="m">40</span><span class="p">))</span>
+<span class="c1"># [1] TRUE</span>
+</code></pre></div>
+
+
+<p>A few output examples:</p>
+
+<div class="highlight"><pre><code class="r">freq_block<span class="p">(</span>x2<span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="c1"># 00 01 10 11</span>
+<span class="c1"># 14 15 16 18</span>
+freq_block<span class="p">(</span>x2<span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="c1"># 000 001 010 011 100 101 110 111</span>
+<span class="c1">#   6   8   7   8   8   7   9   9</span>
+freq_block<span class="p">(</span>x2<span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+<span class="c1"># 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111</span>
+<span class="c1">#    3    3    5    3    4    3    3    5    3    5    2    5    4    4    5    4</span>
+rle<span class="p">(</span>x2<span class="p">)</span>
+<span class="c1"># Run Length Encoding</span>
+<span class="c1">#   lengths: int [1:32] 2 2 1 4 2 4 3 1 4 1 ...</span>
+<span class="c1">#   values : num [1:32] 1 0 1 0 1 0 1 0 1 0 ...</span>
+pattern_match<span class="p">(</span>x2<span class="p">,</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="c1"># [1] 7</span>
+</code></pre></div>
+
+
+<p>So remember the pain of struggling with this homework -- the same pain of the statisticians before the S language was invented. And begin to breathe the fresh air in the R empire with vectorization!</p>

@@ -1,0 +1,33 @@
+<p>Life should be fun. I saw a post in R-help list saying Merry Christmas to other useRs, and I followed up by some R code which can produce a naive animation like this:</p>
+
+<p><embed width="600" height="75" name="plugin" src="http://animation.r-forge.r-project.org/swf/xmas-2009-animation.swf" type="application/x-shockwave-flash"></p>
+
+<p>Here is the code to generate the above Flash animation with shining Christmas:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+saveSWF<span class="p">({</span>
+  n <span class="o">=</span> length<span class="p">(</span>speed <span class="o">&lt;-</span> runif<span class="p">(</span>angle <span class="o">&lt;-</span> runif<span class="p">(</span>x <span class="o">&lt;-</span> strsplit<span class="p">(</span><span class="s">&quot;MERRY CHRISTMAS&quot;</span><span class="p">,</span>
+    <span class="s">&quot;&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]],</span> <span class="m">0</span><span class="p">,</span> <span class="m">360</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">15</span><span class="p">))</span>
+  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">300</span><span class="p">)</span> <span class="p">{</span>
+    angle <span class="o">=</span> angle <span class="o">+</span> speed
+    plot.new<span class="p">()</span>
+    plot.window<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> n<span class="p">),</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> text<span class="p">(</span>i<span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> x<span class="p">[</span>i<span class="p">],</span> srt <span class="o">=</span> angle<span class="p">[</span>i<span class="p">],</span> cex <span class="o">=</span> runif<span class="p">(</span><span class="m">1</span><span class="p">,</span>
+      <span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> col <span class="o">=</span> sample<span class="p">(</span>colors<span class="p">(),</span> <span class="m">1</span><span class="p">))</span>
+    text<span class="p">(</span>n<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Yihui @ 2009-12-24 (http://yihui.name)&quot;</span><span class="p">,</span>
+      adj <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">,</span> cex <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">},</span> interval <span class="o">=</span> <span class="m">0.04</span><span class="p">,</span> dev <span class="o">=</span> <span class="s">&quot;pdf&quot;</span><span class="p">,</span> outdir <span class="o">=</span> getwd<span class="p">(),</span> para <span class="o">=</span> list<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span>
+  <span class="m">4</span><span class="p">),</span> bg <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">),</span> width <span class="o">=</span> <span class="m">8</span><span class="p">,</span> height <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="c1">## in animation package (&gt;=1.1-0), see demo(&#39;Xmas&#39;)</span>
+</code></pre></div>
+
+
+<p>There are other animation formats in the R package <strong>animation</strong>:</p>
+
+<ol>
+<li>use <code>saveMovie()</code> to get a GIF animation (need ImageMagick)</li>
+<li><code>ani.start()</code> and <code>ani.stop()</code> can produce an HTML page with the animation in it</li>
+<li><code>saveLatex()</code> can embed an animation into a PDF document</li>
+</ol>
+

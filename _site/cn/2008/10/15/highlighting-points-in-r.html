@@ -1,0 +1,27 @@
+<p>以下是我以前写的一个利用鼠标交互选择点的例子，主要是<code>getGraphicsEvent()</code>函数。</p>
+
+<p>[notice type=download]<a href="http://yihui.name/cn/wp-content/uploads//1224070972_0.r">文件下载链接</a>[/notice]</p>
+
+<pre><code>par(bg = "black", mar = rep(0, 4), pch = 20)
+xx = runif(100)
+yy = runif(100)
+plot(xx, yy, type = "n")
+mousemove = function(buttons, x, y) {
+    r = 0.2
+    idx = (x - r &lt; xx &amp; xx &lt; x + r) &amp; (y - r &lt; yy &amp; yy &lt; y + r)
+    plot(xx, yy, type = "n")
+    rect(x - r, y - r, x + r, y + r, border = "yellow", lty = 2)
+    points(xx[idx], yy[idx], col = "yellow", cex = 2)
+    points(xx[!idx], yy[!idx], col = "red")
+    NULL
+}
+mousedown = function(buttons, x, y) {
+    "Done"
+}
+getGraphicsEvent("Click mouse to exit", onMouseDown = mousedown,
+    onMouseMove = mousemove)
+</code></pre>
+
+<p>其中<code>r</code>可以自行调整。</p>
+
+<p><img src="http://yihui.name/cn/wp-content/uploads/1224071155_0.png" alt="" /></p>

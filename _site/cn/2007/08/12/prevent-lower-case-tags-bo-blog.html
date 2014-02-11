@@ -1,0 +1,3 @@
+<p>在Bo-Blog博客系统中，Tags默认都是被转化为小写形式的，不知道官方为何采取这种限定形式。我感觉大部分程序语言都是区分大小写（Case Sensitive）的，所以这种限制真是很奇怪。特别是有些专有名词根本就不能小写，看着"odbc"、"latex"、"windows"等写法我就会觉得不舒服。</p>
+
+<p>这个问题也不难解决，花几秒钟Google一下，查出来PHP的大小写转换函数为<code>strtolower()</code>和<code>strtoupper()</code>，再花几秒钟看看提交文章的这个表单（Form）中元素的id（是<code>$tags</code>），然后到PHP源文件中搜索一下<code>$tags</code>，马上就找到了转换小写的地方：在<code>admin/cp_edit.php</code>的第344行有一句<code>$tags_array=@explode(' ', strtolower(trim($tags)));</code>，把这里的小写函数去掉即可。</p>

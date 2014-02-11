@@ -1,0 +1,29 @@
+<p>I remember a few weeks ago, there was a challenge in the R-help list to make the prime symbol in R graphics. In LaTeX, we simply write <code>$X'$</code> or <code>$X^\prime$</code>. R has a rough support for math expressions (see <code>demo(plotmath)</code>) and they are certainly unsatisfactory for LaTeX users. In fact we can write native LaTeX code in R plots via the <a href="http://cran.r-project.org/package=tikzDevice">tikzDevice</a> package! Why bother to use all kinds of tricks to cheat R? :)</p>
+
+<p>Here is an example per request of a reader of my blog:</p>
+
+<p><img src="http://i.imgur.com/3mWKw.png" alt="authentic math formula in R" /></p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>tikzDevice<span class="p">)</span>
+options<span class="p">(</span>tikzMetricPackages <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;\\usepackage[utf8]{inputenc}&quot;</span><span class="p">,</span>
+    <span class="s">&quot;\\usepackage[T1]{fontenc}&quot;</span><span class="p">,</span> <span class="s">&quot;\\usetikzlibrary{calc}&quot;</span><span class="p">,</span>
+    <span class="s">&quot;\\usepackage{amssymb}&quot;</span><span class="p">))</span>
+<span class="c1">## I need the amssymb package because I use \mathcal and \mathbb</span>
+tikz<span class="p">(</span><span class="s">&quot;formula.tex&quot;</span><span class="p">,</span> width <span class="o">=</span> <span class="m">4</span><span class="p">,</span> height <span class="o">=</span> <span class="m">4</span><span class="p">,</span> standAlone <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+    packages <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;\\usepackage{tikz}&quot;</span><span class="p">,</span>
+                 <span class="s">&quot;\\usepackage[active,tightpage,psfixbb]{preview}&quot;</span><span class="p">,</span>
+                 <span class="s">&quot;\\PreviewEnvironment{pgfpicture}&quot;</span><span class="p">,</span>
+                 <span class="s">&quot;\\setlength\\PreviewBorder{0pt}&quot;</span><span class="p">,</span>
+                 <span class="s">&quot;\\usepackage{amssymb}&quot;</span><span class="p">))</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.9</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+plot<span class="p">(</span><span class="m">1</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&quot;$x_1$&quot;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&quot;$x_2$&quot;</span><span class="p">)</span>
+text<span class="p">(</span><span class="m">1</span><span class="p">,</span> c<span class="p">(</span><span class="m">0.8</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1.2</span><span class="p">),</span> c<span class="p">(</span><span class="s">&quot;$\\underbrace{1,2,\\cdots,10}_{10}$&quot;</span><span class="p">,</span>
+    <span class="s">&quot;$\\mathbb{ABCDEFG}$&quot;</span><span class="p">,</span> <span class="s">&quot;$\\mathcal{HIJKLMN}$&quot;</span><span class="p">),</span> cex <span class="o">=</span> <span class="m">2.5</span><span class="p">)</span>
+dev.off<span class="p">()</span>
+
+tools<span class="o">::</span>texi2pdf<span class="p">(</span><span class="s">&quot;formula.tex&quot;</span><span class="p">)</span>
+system<span class="p">(</span>paste<span class="p">(</span>getOption<span class="p">(</span><span class="s">&quot;pdfviewer&quot;</span><span class="p">),</span> <span class="s">&quot;formula.pdf&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+
+

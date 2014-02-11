@@ -1,0 +1,105 @@
+<p>我翻了一下，<a href="/cn/2010/12/unifying-bayesians-and-frequentists/">上一次写</a>跟统计有关的话题已经是2010年的事情了，多数时候，这里写的都是（计算机）技术类与生活类的话题，于是我又想起来很久以前有客官说，你还不如改成“Keep on eating”算了。废话少说，言归正传。</p>
+
+<p>最近有客官问：</p>
+
+<blockquote><p>在分段线性回归中，转折点的连续性是必须的吗？</p></blockquote>
+
+<p>意思是这样，下图中，两段直线应该接着呢（实线），还是可以各走各的（虚线）？</p>
+
+<div class="highlight"><pre><code class="r">set.seed<span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="c1"># 真实模型</span>
+x <span class="o">=</span> sort<span class="p">(</span>runif<span class="p">(</span><span class="m">100</span><span class="p">))</span>
+y <span class="o">=</span> <span class="m">2</span> <span class="o">+</span> <span class="m">1</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">4</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="m">3</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> family <span class="o">=</span> <span class="s">&quot;serif&quot;</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">)</span>
+<span class="c1"># 斜率不同，截距限制</span>
+fit1 <span class="o">=</span> lm<span class="p">(</span>y <span class="o">~</span> <span class="m">1</span> <span class="o">+</span> x <span class="o">+</span> I<span class="p">((</span>x <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)))</span>
+lines<span class="p">(</span>x<span class="p">,</span> fitted<span class="p">(</span>fit1<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> col <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="c1"># 斜率不同，截距也不同</span>
+fit2 <span class="o">=</span> lm<span class="p">(</span>y <span class="o">~</span> <span class="m">1</span> <span class="o">+</span> x <span class="o">+</span> I<span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> I<span class="p">((</span>x <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)))</span>
+lines<span class="p">(</span>x<span class="p">,</span> fitted<span class="p">(</span>fit2<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> lty <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/oicZb.png" alt="plot of chunk linmod" /></p>
+
+<p>虚线线段的中间一段不应该被画出来，我偷了个懒画上去了，本来应该是间断的。连与不连，归根结底，只不过是回归设计阵要不要多一列的问题。这是线性回归中经典的模型比较问题，上面<code>fit2</code>是全模型，<code>fit1</code>是取消一个限制的模型，自由度之差为1，残差平方和之差除以1，再除以全模型的残差平方和除以相应自由度（88/96），就是F统计量，P值也就出来了。R里面所谓的<code>anova()</code>函数，就是干这事儿的：</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># 两个嵌套模型做F检验</span>
+anova<span class="p">(</span>fit1<span class="p">,</span> fit2<span class="p">)</span>
+</code></pre></div>
+
+
+
+
+<div class="highlight"><pre><code class="text">## Analysis of Variance Table
+## 
+## Model 1: y ~ 1 + x + I((x - 0.5) * (x &gt; 0.5))
+## Model 2: y ~ 1 + x + I(x &gt; 0.5) + I((x - 0.5) * (x &gt; 0.5))
+##   Res.Df RSS Df Sum of Sq    F  Pr(&gt;F)    
+## 1     97 155                              
+## 2     96  88  1      66.6 72.6 2.2e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+</code></pre></div>
+
+
+<p>这里因为我们设计的真实模型就是两部分直线斜率和截距在0.5前后都不同，所以这里F检验高度显著，说明加上截距限制条件不合理。道理很简单：除非简约模型和全模型没有显著差异，我们只能认为全模型相对“好”一些。</p>
+
+<p>然而，线性模型本身就是对现实的简化。按照上面的想法，其实我们还需要看更复杂的全模型，否则不能认为线性模型就是合适的模型，比如可以考虑非线性模型。复杂模型是没有尽头的，如果要一个个检查下去，那大家都不用干活了。2008年我在COS写了一篇简单的<a href="http://cos.name/2008/11/lowess-to-explore-bivariate-correlation-by-yihui/">LOWESS文章</a>，如今我仍然可以把它搬出来，因为LOWESS实在是回归模型中的战斗机，它是模型复杂与简约的很好平衡。前面的直线回归可以看作LOWESS的特例，如下<code>fit4</code>。我们可以构造一个相对复杂的LOWESS模型（<code>span</code>参数取小一些），然后和一个简单的模型比较，如：</p>
+
+<div class="highlight"><pre><code class="r">fit3 <span class="o">=</span> loess<span class="p">(</span>y <span class="o">~</span> x<span class="p">,</span> span <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span>
+fit4 <span class="o">=</span> loess<span class="p">(</span>y <span class="o">~</span> <span class="m">1</span> <span class="o">+</span> x <span class="o">+</span> I<span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> I<span class="p">((</span>x <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)),</span> span <span class="o">=</span> <span class="m">1</span><span class="p">,</span> 
+    degree <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> family <span class="o">=</span> <span class="s">&quot;serif&quot;</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;darkgray&quot;</span><span class="p">)</span>
+lines<span class="p">(</span>x<span class="p">,</span> fitted<span class="p">(</span>fit3<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> col <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+lines<span class="p">(</span>x<span class="p">,</span> fitted<span class="p">(</span>fit4<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> lty <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/nGVDw.png" alt="plot of chunk loess-comparison" /></p>
+
+<div class="highlight"><pre><code class="r">anova<span class="p">(</span>fit3<span class="p">,</span> fit4<span class="p">)</span>
+</code></pre></div>
+
+
+
+
+<div class="highlight"><pre><code class="text">## Model 1: loess(formula = y ~ x, span = 0.2)
+## Model 2: loess(formula = y ~ 1 + x + I(x &gt; 0.5) + I((x - 0.5) * (x &gt; 0.5)), span = 1, degree = 1)
+## 
+## Analysis of Variance:   denominator df 82.38
+## 
+##        ENP  RSS F-value Pr(&gt;F)
+## [1,] 15.16 83.2               
+## [2,]  4.02 87.7   0.321   0.99
+</code></pre></div>
+
+
+<p>P值很大，这毫不奇怪，因为真实模型就是按照两段直线构造的。弯弯曲曲的复杂模型无法打败简单模型，此时我们可以有点底气说两个线段的直线回归可能是对数据的一个恰当描述。</p>
+
+<p>客官的第二个问题是：</p>
+
+<blockquote><p>转折点怎么确定？</p></blockquote>
+
+<p>好问题。我对学术研究其实没多大兴趣，所以懒得去文献堆里翻找。我总觉得很多研究是把问题复杂化了，这种文献海让我觉得窒息。如果是我，第一步肯定是画平滑曲线，然后再去结合具体事件背景去决定。如前面的数据用<strong>ggplot2</strong>很容易分组画图：</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+qplot<span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> <span class="o">+</span> geom_smooth<span class="p">()</span>  <span class="c1"># 总趋势</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/Va7An.png" alt="plot of chunk loess" /></p>
+
+<div class="highlight"><pre><code class="r">qplot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> group <span class="o">=</span> x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> geom_smooth<span class="p">()</span>  <span class="c1"># 按0.5前后分组</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/J3cg2.png" alt="plot of chunk loess" /></p>
+
+<p>显然所有数据放一条线上建模不合适。作为普通青年的我，到此就止步了（所以我离学术还十万八千里）。不过作为二青年想起一件事，如果不知道转折点，而靠不断推移转折点、新建模型、比较模型得来的转折点，是否有多重比较的嫌疑？比如先试0.2为转折点，再试0.3，……，一直试到0.9，看哪个模型跟全模型比起来没有显著差异。或者说，如果本来真实模型中不存在这样一个转折点，而通过这种方法找出转折点的概率有多大？我估计我八成问了一个很二的问题，应该早有人研究过了。做个模拟应该也不难。</p>
+
+<hr />
+
+<p>本文是我第一次在博客里尝试<strong>knitr</strong>包，点击<a href="https://github.com/yihui/cn/blob/gh-pages/_posts/_2012-04-30-break-points-in-regression.Rmd">这里看源文件</a>以及<a href="https://github.com/yihui/cn/blob/gh-pages/_posts/_knit-all.R">编译代码</a>。关于<strong>knitr</strong>，待我下回在COS详细分解（<a href="https://github.com/yihui/r-ninja/blob/master/11-auto-report.md">预览</a>）；昨天刚提交0.5版本到CRAN，最终实现了我的初步理想：会R就会动态生成报告，把LaTeX扔一边儿去吧！</p>

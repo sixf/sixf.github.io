@@ -1,0 +1,18 @@
+<p>When I was adjusting my slides for a talk (to be given in Oct 16) in the Capital University of Economics and Business, I found the table of contents was a little bit too long to be placed in a single page while the titles of all sections are not so wide, thus I searched for some instructions on multi-column pages in LaTeX, and easily got this Wikipedia page: <a href="http://en.wikibooks.org/wiki/LaTeX/Page_Layout">http://en.wikibooks.org/wiki/LaTeX/Page_Layout</a>. Some codes as follows will just help us separate a part of texts into several columns:</p>
+
+<div class="highlight"><pre><code class="latex">...
+<span class="k">\usepackage</span><span class="nb">{</span>multicol<span class="nb">}</span>
+...
+<span class="k">\begin</span><span class="nb">{</span>multicols<span class="nb">}{</span>3<span class="nb">}</span>    <span class="c">% 3 columns</span>
+   If you are using a standard Latex document class,
+   then you can simply pass the optional argument twocolumn
+   to the document class: <span class="k">\documentclass</span><span class="na">[twocolumn]</span><span class="nb">{</span>article<span class="nb">}</span>
+   which will give the desired effect.
+<span class="k">\end</span><span class="nb">{</span>multicols<span class="nb">}</span>
+...
+</code></pre></div>
+
+
+<p>This is what my table of contents looks like now:</p>
+
+<p><img src="http://i.imgur.com/MguIG.png" alt="multicol -- Multi-column Pages in LaTeX" /></p>

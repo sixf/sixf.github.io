@@ -1,0 +1,19 @@
+<p>Motivated by the excellent R package <code>pgfSweave</code>, I begin to notice the font families in my graphs when writing Sweave documents. The default font family for PDF graphs is <code>Helvetica</code>, which is, in most cases (I think), inconsistent with the LaTeX font styles. Some common font families are listed in <code>?postscript</code>, and we can take a look at them by:</p>
+
+<div class="highlight"><pre><code class="r"><span class="kr">for</span> <span class="p">(</span>f <span class="kr">in</span> c<span class="p">(</span><span class="s">&quot;AvantGarde&quot;</span><span class="p">,</span> <span class="s">&quot;Bookman&quot;</span><span class="p">,</span> <span class="s">&quot;Courier&quot;</span><span class="p">,</span> <span class="s">&quot;Helvetica&quot;</span><span class="p">,</span>
+    <span class="s">&quot;Helvetica-Narrow&quot;</span><span class="p">,</span> <span class="s">&quot;NewCenturySchoolbook&quot;</span><span class="p">,</span> <span class="s">&quot;Palatino&quot;</span><span class="p">,</span> <span class="s">&quot;Times&quot;</span><span class="p">))</span> <span class="p">{</span>
+    pdf.options<span class="p">(</span>family <span class="o">=</span> f<span class="p">)</span>
+    pdf<span class="p">(</span>paste<span class="p">(</span>f<span class="p">,</span> <span class="s">&quot;.pdf&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+    set.seed<span class="p">(</span><span class="m">123</span><span class="p">)</span>
+    plot<span class="p">(</span>rnorm<span class="p">(</span><span class="m">25</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">25</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&quot;xlab family&quot;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&quot;ylab font&quot;</span><span class="p">,</span>
+        main <span class="o">=</span> paste<span class="p">(</span><span class="s">&quot;Font Families in R (PDF):&quot;</span><span class="p">,</span> f<span class="p">))</span>
+    text<span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Text in the Middle&quot;</span><span class="p">)</span>
+    mtext<span class="p">(</span>sprintf<span class="p">(</span><span class="s">&quot;pdf.options(family = \&quot;%s\&quot;)&quot;</span><span class="p">,</span> f<span class="p">),</span> side <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+    dev.off<span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/TqZWn.png" alt="Font Families for the R PDF Device" /></p>
+
+<p>It seems that <code>"Bookman"</code>, <code>"NewCenturySchoolbook"</code>, <code>"Palatino"</code> and <code>"Times"</code> can be better choices when using Sweave because they are serif fonts, which are usually more consistent with LaTeX PDF.</p>

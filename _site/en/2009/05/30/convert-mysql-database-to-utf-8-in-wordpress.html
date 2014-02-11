@@ -1,0 +1,26 @@
+<p>This plugin is based on the post <a href="http://www.sveit.com/forum/viewtopic.php?t=1282#p11543">Convert MySQL Tables to UTF-8</a> and an <a href="http://wordpress.org/extend/plugins/utf-8-database-converter/">existing plugin by g30rg3_x</a>. The reason I modified their code is that they will convert <em>all</em> tables in your database to the UTF-8 charset, but what we need is to convert WP tables, so I changed the code <code>"SHOW TABLES"</code> to <code>"SHOW TABLES LIKE " . $table_prefix . "%"</code>, which will guarantee other tables could stay untouched. Besides, g30rg3_x's purpose was to alter the charset of old WP databases to new UTF-8 databases, but in fact we also need to change the charset after we moved our DB to a new host when the charset is not UTF-8 by default. Judging from my experience, the default charset/collation for many web hosts is <code>latin1</code>/<code>latin1_swedish_ci</code> (I don't know why), whereas popular web-buidling systems often use <code>utf8</code>/<code>utf8_general_ci</code>, thus we need to change the charset before all content could be normally displayed. Without PHP and <code>SHOW TALBES</code> / <code>SHOW COLUMNS</code>, we will need to write endless code to change all tables and all columns.</p>
+
+<div class="highlight"><pre><code class="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">collation</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">);</span> <span class="o">#</span> <span class="k">default</span> <span class="k">collation</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="o">|</span> <span class="k">collation</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="o">|</span> <span class="n">latin1_swedish_ci</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>You can download the <a href="http://wordpress.org/extend/plugins/utf-8-db-converter">UTF-8 DB Converter for Wordpress</a>.</p>
+
+<p>The critical part of this plugin is:</p>
+
+<div class="highlight"><pre><code class="php"><span class="x">....</span>
+<span class="x">$sql2 = &quot;ALTER TABLE $table DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci&quot;;</span>
+<span class="x">....</span>
+<span class="x">$sql4 = &quot;ALTER TABLE $table CHANGE `$field_name` `$field_name` $field_type</span>
+<span class="x">         CHARACTER SET utf8 COLLATE utf8_bin&quot;;</span>
+<span class="x">....</span>
+</code></pre></div>
+
+
+<p>I don't think I need to describe the installation again, but I sould warn you again about possible data lost during the conversion. Do back up early please.</p>

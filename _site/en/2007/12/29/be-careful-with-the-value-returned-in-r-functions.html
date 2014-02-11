@@ -1,0 +1,35 @@
+<p>You are free to break the lines when writing R code, but be careful to R functions when there are operators <code>+</code> or <code>-</code> in your expression to return:</p>
+
+<div class="highlight"><pre><code class="r">f1 <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="m">1</span> <span class="o">+</span> <span class="m">1</span>
+<span class="p">}</span>
+f1<span class="p">()</span> <span class="c1"># of course 2</span>
+f2 <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="m">1</span>
+   <span class="o">+</span> <span class="m">1</span>
+<span class="p">}</span>
+f2<span class="p">()</span> <span class="c1"># returns 1</span>
+f3 <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kr">return</span><span class="p">(</span><span class="m">1</span>
+   <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+f3<span class="p">()</span> <span class="c1"># 2; use return() if you want break lines, or</span>
+f4 <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="m">1</span> <span class="o">+</span>
+   <span class="m">1</span>
+<span class="p">}</span>
+f4<span class="p">()</span> <span class="c1"># 2; don&#39;t put &#39;+&#39; in the beginning, as &#39;+1==1&#39;</span>
+</code></pre></div>
+
+
+<p>These examples are quite simple, but sometimes you will forget this rule, e.g.:</p>
+
+<div class="highlight"><pre><code class="r">testMat <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>len <span class="o">=</span> <span class="m">50</span><span class="p">,</span> digits <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> <span class="m">13</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">17</span><span class="p">,</span> <span class="m">19</span><span class="p">))</span> <span class="p">{</span>
+    n <span class="o">=</span> length<span class="p">(</span>digits<span class="p">)</span>
+    matrix<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span> <span class="o">*</span> len<span class="p">,</span> n<span class="p">)</span>
+      <span class="o">+</span> matrix<span class="p">(</span><span class="m">10</span><span class="o">^</span>digits<span class="p">,</span> <span class="m">2</span> <span class="o">*</span> len<span class="p">,</span> n<span class="p">,</span> byrow <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Can you find out the error in the above function without reading my hints beforehand?</p>

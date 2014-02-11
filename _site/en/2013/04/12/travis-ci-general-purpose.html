@@ -1,0 +1,53 @@
+<p>A few days ago I <a href="/en/2013/04/travis-ci-for-r/">wrote</a> about Travis CI, and was wondering if we could integrate the testing of R packages into this wonderful platform. A reader (Vincent Arel-Bundock) pointed out in the comments that Travis was running Ubuntu that allows you to install software packages at your will.</p>
+
+<p>I took a look at the <a href="http://about.travis-ci.org/docs/">documentation</a>, and realized they were building and testing packages in virtual machines. No wonder <code>sudo apt-get</code> works. Remember <code>apt-get -h | tail -n1</code>:</p>
+
+<blockquote><p>This APT has Super Cow Powers. (APT有超级牛力)</p></blockquote>
+
+<h2>R on Travis CI</h2>
+
+<p>Now we are essentially system admins, and we can install anything from Ubuntu repositories, so it does not really matter that Travis CI does not support R yet. Below are a few steps to integrate your R package (on Github) into this system:</p>
+
+<ol>
+<li>follow the <a href="http://about.travis-ci.org/docs/user/getting-started/">official guide</a> util you see <code>.travis.yml</code>;</li>
+<li>copy my <a href="https://github.com/yihui/knitr/blob/master/.travis.yml"><code>.travis.yml</code></a> for the <strong>knitr</strong> package if you want, or write your own;
+
+<ul>
+<li>I use a custom library path <code>~/R</code> to install add-on R packages so that I do not have to type <code>sudo</code> everywhere</li>
+<li>at the moment I use the RDev PPA by Michael Rutter to install R 3.0.0 since his plan for R 3.0 on CRAN is in May; at that time I'll change this PPA to a CRAN repository</li>
+<li>since <code>R CMD check</code> requires all packages in <code>Suggests</code> as well, I install <strong>knitr</strong> using <code>install.packages(dep = TRUE)</code> to make sure all relevant packages are installed</li>
+<li><code>make install</code> and <code>make check</code> are wrappers of <code>R CMD build</code> and <code>R CMD check</code> respectively, defined in the <a href="https://github.com/yihui/knitr/blob/master/Makefile"><code>Makefile</code></a></li>
+</ul>
+</li>
+<li>push this <code>.travis.yml</code> to Github, and Travis CI will start building your package when a worker is available (normally within a few seconds);</li>
+</ol>
+
+
+<p>By default you will receive email notifications when there are changes in the build. You can also find the guide on the build status image in the documentation as well, e.g. <a href="https://travis-ci.org/yihui/knitr"><img src="https://travis-ci.org/yihui/knitr.png" alt="Build Status" /></a></p>
+
+<p>What I described here actually applies to any software packages (not only R), as long as the dependencies are available under Ubuntu, or you know how to build them.</p>
+
+<h2>But it is still far from CRAN</h2>
+
+<p>OK, it works, but we are still a little bit far from what CRAN does, because Travis CI does not have official support for R. Each time we have to install one Gigabyte of additional software to create the R testing environment (sigh, if only R did not have to tie itself to LaTeX). If these packages are pre-built in the virtual machines, it will save us a lot of time.</p>
+
+<p><del>The second problem is, there is no Windows support on Travis CI</del> (one developer told us on <a href="https://twitter.com/henrikhodne/status/322667858205241344">Twitter</a> that it was coming). There is <a href="http://about.travis-ci.org/docs/user/osx-ci-environment/">a page</a> for OS X, but I did not really figure out how to build software under OS X there.</p>
+
+<p>The third problem is Travis CI only builds and tests packages; it does not provide downloads like CRAN. Perhaps we can upload the packages using <a href="http://about.travis-ci.org/docs/user/encryption-keys/">encryption keys</a> to our own servers.</p>
+
+<h2>R-Forge, where are you going?</h2>
+
+<!--
+[R-Forge](http://r-forge.r-project.org/), the most promising "Travis CI" in the R world, is slow and broken from time to time according to my experience. For developers, immediate feedback is precious -- you push some changes to the repository and you want to know immediately if anything is broken. Usually we have to wait for at least one day for the new build on R-Forge. Sometimes the system hangs up for unknown reasons, and the admin has to be notified by users to solve the problem seven days later. There are always requests like "Could you install the foo package for my bar package?" Meanwhile, the development version of R has been disabled for a long time, which is really unfortunate since CRAN insists that packages should be checked against both the current version and the development version of R. What is really funny is that the build and check log links are hidden (by default) behind a button called "Show/Hide extra info". Why don't you want us to see that??
+-->
+
+
+<p>I will shut up here since I realized I was not being constructive. Let me spend more time thinking about this, and I love to hear suggestions from readers as well.</p>
+
+<p>So, two potential Google Summer of Code projects:</p>
+
+<ul>
+<li>make R an officially supported language on Travis CI (this really depends on if the Travis team want it or not)</li>
+<li>improve R-Forge (of course this depends on if the R-Forge team think they need help or not)</li>
+</ul>
+

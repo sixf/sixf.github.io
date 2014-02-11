@@ -1,0 +1,16 @@
+<p>To convert PDF to SWF, we may use the utility <code>pdf2swf</code> in <a href="http://www.swftools.org">SWF Tools</a>. However, the feature of specifying the <em>frame rate</em> has not been documented yet. The other day Matthias Kramm told me this option just hided behind <code>-s</code>.</p>
+
+<div class="highlight"><pre><code class="text">Usage: pdf2swf [-options] file.pdf -o file.swf
+
+-h , --help               Print short help message and exit
+-V , --version            Print version info and exit
+....
+-p , --pages range        Convert only pages in range with range e.g. 1-20 or 1,4,6,9-11 or
+....
+-s , --set param=value    Set a SWF encoder specific parameter.
+                         ?See pdf2swf -s help for more information.
+....
+</code></pre></div>
+
+
+<p>To specify the frame rate, we just need to use <code>pdf2swf -s framerate=?</code>.</p>

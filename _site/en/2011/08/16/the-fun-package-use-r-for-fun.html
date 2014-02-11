@@ -1,0 +1,46 @@
+<p>A couple of days ago we released a package named <a href="http://cran.r-project.org/package=fun">fun</a> to CRAN, but I did not dare to send an announcement to r-packages@r-project.org as usual. This package is a collection of some classical computer games (e.g. the Mine sweeper and Five in a row) as well as other funny stuff. Some examples:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1">## install.packages(&#39;fun&#39;)</span>
+library<span class="p">(</span>fun<span class="p">)</span>
+<span class="kr">if</span> <span class="p">(</span>.Platform<span class="o">$</span>OS.type <span class="o">==</span> <span class="s">&quot;windows&quot;</span><span class="p">)</span> x11<span class="p">()</span> <span class="kr">else</span> x11<span class="p">(</span>type <span class="o">=</span> <span class="s">&quot;Xlib&quot;</span><span class="p">)</span>
+mine_sweeper<span class="p">()</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/U4oAT.png" alt="Mine Sweeper in R" /></p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>fun<span class="p">)</span>
+gomoku<span class="p">()</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/8jcQl.png" alt="Five in a row in R" /></p>
+
+<p>You can take a look at the list of functions in this package by reading the HTML help page (go to <code>help.start()</code>), and I also need to mention the demos, e.g. see <code>demo('TurtleGraphics')</code> for a demo of Turtle graphics (how many people know the old Logo programming language?), and <code>demo(package = 'fun')</code> for a list of all demos in this package.</p>
+
+<div class="highlight"><pre><code class="r">demo<span class="p">(</span><span class="s">&#39;RealTurtle&#39;</span><span class="p">,</span> package <span class="o">=</span> <span class="s">&#39;fun&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/oWdOu.png" alt="A turtle drawn in R" /></p>
+
+<p>Although these topics are not new, they can still be good programming exercises.</p>
+
+<p>We started writing this package more than two years ago, but it was almost forgotten later until a few days ago someone mentioned the game "Five in a row" in <a href="http://cos.name/cn/">our web forum</a>. This forum is almost the Chinese version of R-help, and it is not unusual for people to bring forward all kinds of funny ideas with R. If you are at useR! 2011 right now, you probably have heard from George Zhang <a href="http://www.warwick.ac.uk/statsdept/useR-2011/schedule/LIGHTNING.HTML">about the Chinese R conferences</a> these years, and this forum has been the sponsor and organizer ever since the first conference (which I initiated). However, please do not get a wrong impression that Chinese useRs are doing mine sweepers with R every day.</p>
+
+<p>Feel free to share with us if you have more fun. The developers' page is at: <a href="https://github.com/yihui/fun">https://github.com/yihui/fun</a></p>
+
+<ol type="a">
+<li><ol type="a">
+<li>This package may remind some people about the <a href="http://cran.r-project.org/package=sudoku">sudoku</a> package (e.g. <a href="https://plus.google.com/109653178371807724268/posts/eGKq27aqK5b">Joshua Wiley has noticed it</a>), and some people may even remember this:</li>
+</ol>
+</li>
+</ol>
+
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>fortunes<span class="p">)</span>
+fortune<span class="p">(</span><span class="s">&#39;sudoku&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+

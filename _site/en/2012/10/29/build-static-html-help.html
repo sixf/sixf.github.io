@@ -1,0 +1,58 @@
+<p>Many R users may still remember the good old days when we had static HTML documentation for R packages. That was probably before R 2.10.0 (in 2009). Then we had the fancy dynamic HTML help based on the built-in httpd server, but it has never really made much sense to me. Ever since then, I have been feeling uncomfortable about writing package documentation, because each time I update my documentation and reinstall my package, I have to quit R and restart it to see the new documentation, otherwise I will have to see this cryptic error in my web browser if I stay in the same R session:</p>
+
+<div class="highlight"><pre><code class="text">Error in fetch(key) : internal error -3 in R_decompress1
+</code></pre></div>
+
+
+<p>This is how I feel about the dynamic help system in R:</p>
+
+<p><img src="http://sjaak.zoo.cs.uu.nl/jv/rip/a_good_paper_turns_out_to_be_a_pseudo_science_paper.gif" alt="How I felt about R dynamic help" /></p>
+
+<p>The greatest potential of the httpd server, in my opinion, is to build real dynamic documentation for R, which is something like Sweave, e.g. run examples in real time. But this is not yet done (a design has been there for a long time, though). Anyway, it is super cool to see the package demos run in the web browser when we click the links in <code>help.start()</code>.</p>
+
+<h2>Static HTML Help</h2>
+
+<p>I do not often need dynamic help; I just want static HTML pages so I do not have to open R each time I only want to look at the documentation of one function. Below is a function to build HTML documentation pages for one package using <code>Rd2HTML()</code>:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># for one package</span>
+static_help <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>pkg<span class="p">,</span> links <span class="o">=</span> tools<span class="o">::</span>findHTMLlinks<span class="p">())</span> <span class="p">{</span>
+  pkgRdDB <span class="o">=</span> tools<span class="o">:::</span>fetchRdDB<span class="p">(</span>file.path<span class="p">(</span>find.package<span class="p">(</span>pkg<span class="p">),</span> <span class="s">&#39;help&#39;</span><span class="p">,</span> pkg<span class="p">))</span>
+  force<span class="p">(</span>links<span class="p">);</span> topics <span class="o">=</span> names<span class="p">(</span>pkgRdDB<span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>p <span class="kr">in</span> topics<span class="p">)</span> <span class="p">{</span>
+    tools<span class="o">::</span>Rd2HTML<span class="p">(</span>pkgRdDB<span class="p">[[</span>p<span class="p">]],</span> paste<span class="p">(</span>p<span class="p">,</span> <span class="s">&#39;html&#39;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&#39;.&#39;</span><span class="p">),</span>
+                   package <span class="o">=</span> pkg<span class="p">,</span> Links <span class="o">=</span> links<span class="p">,</span> no_links <span class="o">=</span> is.null<span class="p">(</span>links<span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>It is easy to build the HTML documentation for all packages based on the above function:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># for all packages</span>
+static_help_all <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+  owd <span class="o">=</span> getwd<span class="p">();</span> on.exit<span class="p">(</span>setwd<span class="p">(</span>owd<span class="p">))</span>
+  links <span class="o">=</span> tools<span class="o">::</span>findHTMLlinks<span class="p">()</span>
+  <span class="kr">for</span> <span class="p">(</span>p <span class="kr">in</span> .packages<span class="p">(</span><span class="kc">TRUE</span><span class="p">))</span> <span class="p">{</span>
+    message<span class="p">(</span><span class="s">&#39;* Making static html help pages for &#39;</span><span class="p">,</span> p<span class="p">)</span>
+    setwd<span class="p">(</span>system.file<span class="p">(</span><span class="s">&#39;html&#39;</span><span class="p">,</span> package <span class="o">=</span> p<span class="p">))</span>
+    static_help<span class="p">(</span>p<span class="p">,</span> links<span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h2>Rebuild R Help with knitr</h2>
+
+<p>That is still not the ideal format to me. R help should have been much more appealing and useful, so here comes <code>knit_rd()</code> in the <strong>knitr</strong> package, which is my attempt to rebuild HTML help pages for R, but with the examples compiled as well. It is pretty much based on <code>static_help()</code> above, and one additional step is to extract the examples code and run it.</p>
+
+<p>My friend Tengfei Yin built his documentation for <strong>ggbio</strong> with this approach, and you can see the pages here: <a href="http://tengfei.github.com/ggbio/docs/man/">http://tengfei.github.com/ggbio/docs/man/</a>.</p>
+
+<p>In the <a href="https://github.com/yihui/knitr">development version</a> of <strong>knitr</strong>, I also added <code>knit_rd_all()</code> to build static html pages for all packages. Once we have static pages, we can add them to bookmarks of our web browser, or publish them to the web (like Tengfei).</p>
+
+<h2>About <code>--enable-prebuilt-html</code></h2>
+
+<p><a href="http://www.mail-archive.com/r-help@r-project.org/msg183702.html">Experts</a> would recommend us to build R from source, with the <code>--enable-prebuilt-html</code> option. That should be the fundamental solution. As Martin said, that is not a bad exercise after all.</p>
+
+<h2>Staticdocs</h2>
+
+<p>Hadley's <a href="https://github.com/hadley/staticdocs"><strong>staticdocs</strong> package</a> has taken a much further step in this direction. It has a cool style based on bootstrap (it has nothing to do with resampling). See the new <a href="http://docs.ggplot2.org/current/">ggplot2 documentation</a> website for a fantastic example.</p>

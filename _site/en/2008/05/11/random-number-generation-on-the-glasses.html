@@ -1,0 +1,25 @@
+<p>I was unfortunately caught in the rain this evening and my glasses were blurred by the rain drops. When I came back the office, took them off and was about to clear the beads, I just found a good RNG (<em>Random Number Generator</em>) from the nature:</p>
+
+<p><img src="http://i.imgur.com/osW1e.jpg" alt="rain drops on glasses" /></p>
+
+<p>People who are familiar with statistical computation must have learned how to generate random numbers following a <code>U(0, 1)</code> distribution. One of the most common generators is the <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a>. This is just what I was reminded of by the rain drops on my glasses. The plot below is made in R based the linear congruential generator:</p>
+
+<div class="highlight"><pre><code class="r">n <span class="o">=</span> <span class="m">100</span>
+x <span class="o">=</span> numeric<span class="p">(</span>n <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="c1"># the seed: generated from the system clock (number of seconds from 00:00)</span>
+x<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> sum<span class="p">(</span>as.integer<span class="p">(</span>substring<span class="p">(</span>Sys.time<span class="p">(),</span> c<span class="p">(</span><span class="m">12</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">18</span><span class="p">),</span>
+   c<span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">19</span><span class="p">)))</span> <span class="o">*</span> c<span class="p">(</span><span class="m">3600</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)</span>
+<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> x<span class="p">[</span>i <span class="o">+</span> <span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="m">7</span><span class="o">^</span><span class="m">5</span> <span class="o">*</span> x<span class="p">[</span>i<span class="p">])</span><span class="o">%%</span><span class="p">(</span><span class="m">2</span><span class="o">^</span><span class="m">31</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+<span class="c1"># &quot;normalize&quot; to [0, 1]</span>
+x <span class="o">=</span> x<span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">^</span><span class="m">31</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+op <span class="o">=</span> par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> bg <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span>
+plot<span class="p">(</span>x<span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">)</span>
+par<span class="p">(</span>op<span class="p">)</span>
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/xcMdj.png" alt="Random Number Generation on the Glasses" /></p>
+
+<p>Do they look like each other? Here is a simple animation.</p>
+
+<p><img src="http://i.imgur.com/jtJ1S.gif" alt="Random Number Generation on the Glasses" /></p>

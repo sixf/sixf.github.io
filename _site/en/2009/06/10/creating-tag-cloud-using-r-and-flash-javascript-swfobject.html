@@ -1,0 +1,85 @@
+<p>Tag cloud is a bunch of words drawn in a graph with their sizes proportional to their frequency; it's widely used in blogs to visualize tags. We can observe important words quickly from a tag cloud, as they often appear in large fontsize. Tony N. Brown asked how to <a href="https://stat.ethz.ch/pipermail/r-help/2009-June/200645.html">graphically represent frequency of words in a speech</a> the other day in R-help list, which is actually a problem about the tag cloud:</p>
+
+<blockquote><p>I recently saw a graph on television that displayed selected words/phrases in a speech scaled in size according to their frequency. So words/phrases that were often used appeared large and words that were rarely used appeared small. [...]</p></blockquote>
+
+<p>Marc Schwartz mentioned that <a href="http://ggorjan.blogspot.com/">Gorjanc Gregor</a> has done <a href="http://www.bfro.uni-lj.si/MR/ggorjan/software/R/index.html#tagCloud">some work</a> years ago using R (in grid graphics). The obstacle of creating tag cloud in R, as Gorjanc wrote, lies in deciding the placement of words, and it would be much easier for other applications such as browsers to arrange the texts. That's true -- there have already been a lot of mature programs to deal with tag cloud. One of them is the <code>wp-cumulus</code> plugin for WordPress, which makes use of a Flash object to generate the tag cloud, and it has fantastic 3D rotation effect of the cloud.</p>
+
+<h1>1. Arranging text labels with <code>pointLabel()</code></h1>
+
+<p>Before introducing how to port the plugin into R, I'd like to introduce an R function <code>pointLabel()</code> in <strong>maptools</strong> package and it can partially solve the problem of arranging text labels in a plot (using simulated annealing or genetic algorithm). Here is a simulated example:</p>
+
+<p><img src="http://i.imgur.com/dnWDx.png" alt="Simulated Tag Cloud with R function pointLabel in maptools" /></p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>maptools<span class="p">)</span>
+set.seed<span class="p">(</span><span class="m">123</span><span class="p">)</span>
+x <span class="o">=</span> runif<span class="p">(</span><span class="m">19</span><span class="p">)</span>
+y <span class="o">=</span> runif<span class="p">(</span><span class="m">19</span><span class="p">)</span>
+w <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;R&quot;</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="s">&quot;free&quot;</span><span class="p">,</span> <span class="s">&quot;software&quot;</span><span class="p">,</span> <span class="s">&quot;and&quot;</span><span class="p">,</span> <span class="s">&quot;comes&quot;</span><span class="p">,</span>
+    <span class="s">&quot;with&quot;</span><span class="p">,</span> <span class="s">&quot;ABSOLUTELY&quot;</span><span class="p">,</span> <span class="s">&quot;NO&quot;</span><span class="p">,</span> <span class="s">&quot;WARRANTY&quot;</span><span class="p">,</span> <span class="s">&quot;You&quot;</span><span class="p">,</span> <span class="s">&quot;are&quot;</span><span class="p">,</span> <span class="s">&quot;welcome&quot;</span><span class="p">,</span>
+    <span class="s">&quot;to&quot;</span><span class="p">,</span> <span class="s">&quot;redistribute&quot;</span><span class="p">,</span> <span class="s">&quot;it&quot;</span><span class="p">,</span> <span class="s">&quot;under&quot;</span><span class="p">,</span> <span class="s">&quot;certain&quot;</span><span class="p">,</span> <span class="s">&quot;conditions&quot;</span><span class="p">)</span>
+par<span class="p">(</span>ann <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> xpd <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span> mar <span class="o">=</span> rep<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> axes <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+pointLabel<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> w<span class="p">,</span> cex <span class="o">=</span> runif<span class="p">(</span><span class="m">19</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p>I was fortunate to get a very neat graph with no labels overlapping, but I don't think this is a good solution, as it doesn't take care of the initial locations of the words. My rough idea about deciding the initial locations is to sample on circles with radii proportional to the frequency, i.e. let x = freq * sin(&theta;) and y = freq * cos(&theta;) where &theta; ~ U(0, 2&pi;). In this case, important words will be placed near the center of the plot.</p>
+
+<h1>2. Creating tag cloud in a Flash movie using R</h1>
+
+<p>The problem becomes quite easy with a Flash movie <a href="http://www.roytanck.com/2008/05/19/how-to-repurpose-my-tag-cloud-flash-movie/">tagcloud.swf</a> and a JavaScript program <a href="http://blog.deconcept.com/swfobject/">swfobject.js</a>. The mechanism, briefly speaking, is that the tag information is passed to the Flash object by JavaScript, and the Flash object will read the variable <code>tagcloud</code> where the sizes, colors and hyperlinks of tags are stored. Finally the tags are visualized like rotating cloud.</p>
+
+<p>It's not difficult to pass the tag information to JavaScript in pure text. The function <code>tag_cloud()</code> in the <strong>fun</strong> package can create an HTML page with a tag cloud Flash movie inside it.</p>
+
+<p>The main argument is <code>tagData</code> which is a data.frame containing at least three columns (<code>tag</code>, <code>link</code> and <code>count</code>) and looks like:</p>
+
+<div class="highlight"><pre><code class="r"><span class="o">&gt;</span> head<span class="p">(</span>tagData<span class="p">)</span>
+                tag                                        link count
+<span class="m">1</span> <span class="m">2</span>D Kernel Density http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span><span class="m">2</span>d<span class="o">-</span>kernel<span class="o">-</span>density<span class="o">/</span>     <span class="m">1</span>
+<span class="m">2</span>         algorithm         http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>algorithm<span class="o">/</span>     <span class="m">1</span>
+<span class="m">3</span>         Animation         http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>animation<span class="o">/</span>    <span class="m">11</span>
+<span class="m">4</span>           AniWiki           http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>aniwiki<span class="o">/</span>     <span class="m">2</span>
+<span class="m">5</span>            Arcing            http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>arcing<span class="o">/</span>     <span class="m">1</span>
+<span class="m">6</span>          arrows<span class="p">()</span>            http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>arrows<span class="o">/</span>     <span class="m">1</span>
+</code></pre></div>
+
+
+<p>Additional columns <code>color</code> and <code>hicolor</code> will be used if they exist (hexadecimal numbers specifying RGB), e.g.</p>
+
+<div class="highlight"><pre><code class="r"><span class="o">&gt;</span> head<span class="p">(</span>tagData<span class="p">)</span>
+                tag                                        link count  color hicolor
+<span class="m">1</span> <span class="m">2</span>D Kernel Density http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span><span class="m">2</span>d<span class="o">-</span>kernel<span class="o">-</span>density<span class="o">/</span>     <span class="m">1</span> <span class="m">2163</span>bb  f0763d
+<span class="m">2</span>         algorithm         http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>algorithm<span class="o">/</span>     <span class="m">1</span> <span class="m">9</span>f0f38  d825b1
+<span class="m">3</span>         Animation         http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>animation<span class="o">/</span>    <span class="m">11</span> <span class="m">800130</span>  <span class="m">5</span>b8d6a
+<span class="m">4</span>           AniWiki           http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>aniwiki<span class="o">/</span>     <span class="m">2</span> <span class="m">7</span>ce1df  <span class="m">6607</span>b0
+<span class="m">5</span>            Arcing            http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>arcing<span class="o">/</span>     <span class="m">1</span> df4e4a  f5cdf2
+<span class="m">6</span>          arrows<span class="p">()</span>            http<span class="o">://</span>yihui.name<span class="o">/</span>en<span class="o">/</span>tag<span class="o">/</span>arrows<span class="o">/</span>     <span class="m">1</span> <span class="m">31</span>f5fb  <span class="m">19</span>d50d
+</code></pre></div>
+
+
+<h1>3. Example</h1>
+
+<p>Here is an example on visualizing my blog tags.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>fun<span class="p">)</span>
+tagCloud<span class="p">(</span>tagData<span class="p">)</span>
+</code></pre></div>
+
+
+<p>The above code will generate an HTML page. You can adjust the parameters as you wish.</p>
+
+<h1>4. Other issues</h1>
+
+<p>There is still one more step to answer Tony's original question, namely splitting the speech into single words and computing the frequency. This can be (roughly) done by <code>strsplit(..., split = " ")</code> and <code>table()</code>.</p>
+
+<p>Encoding problems may exist in the above code, but <code>URLencode(tagXML)</code> could be of help.</p>
+
+<p>Only Latin characters are supported, but there's possibility to modify the Flash source file to support other languages. See <a href="http://www.roytanck.com/2008/03/15/wp-cumulus-released/">Roy Tanck's post</a> for more information.</p>
+
+<p>Other R resources I know so far:</p>
+
+<ul>
+<li>The R package <a href="http://r-forge.r-project.org/projects/r4x/"><code>R4X</code></a> by <a href="http://romainfrancois.blog.free.fr">Romain Fran?ois</a>: you can generate an HTML page containing the tags with <em>dynamic</em> classes attached to the <code>&lt;span&gt;</code> tags (install the package and read its vignette: <code>install.packages('R4X', repos='http://r-forge.r-project.org'); vignette('r4xslides', package='R4X')</code>)</li>
+<li>The R package <a href="http://www.rforge.net/snippets/"><code>snippets</code></a> by <a href="http://simon.urbanek.info/">Simon Urbanek</a>: there is a function <code>cloud()</code> to create word cloud; words are arranged from top to bottom and left to right. See the 23rd reply below for an example (thanks, Emilio).</li>
+</ul>
+

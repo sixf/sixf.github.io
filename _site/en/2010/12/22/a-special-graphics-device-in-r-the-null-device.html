@@ -1,0 +1,37 @@
+<p>It is well-known that R has several graphics devices -- either the screen devices (<code>X11()</code>, <code>windows()</code>, ...) or the off-screen devices (<code>pdf()</code>, <code>png()</code>, ...). We can query the default graphics device in <code>options()</code>:</p>
+
+<div class="highlight"><pre><code class="r">getOption<span class="p">(</span><span class="s">&#39;device&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>In a non-interactive session, the default device is <code>pdf()</code>. This is why Sweave has to create a file named <code>Rplots.pdf</code> <em>no matter if you want it or not</em> when you run Sweave on an Rnw file which has code chunks creating plots. Such a behaviour is annoying to me -- the PDF file is not only unnecessary, but also time-consuming (creating this PDF file is completely a waste of time). Is there a way to set a "null" device? (like the <code>/dev/null</code> for *nix users) The answer is yes, but not so obvious. I have not found the device below documented anywhere:</p>
+
+<div class="highlight"><pre><code class="r">options<span class="p">(</span>device <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
+    .Call<span class="p">(</span><span class="s">&quot;R_GD_nullDevice&quot;</span><span class="p">,</span> PACKAGE <span class="o">=</span> <span class="s">&quot;grDevices&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+
+
+<p>This device can speed up Sweave a lot when there are many plots to draw. Here is a comparison:</p>
+
+<div class="highlight"><pre><code class="r">x <span class="o">=</span> rnorm<span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+system.time<span class="p">({</span>
+    .Call<span class="p">(</span><span class="s">&quot;R_GD_nullDevice&quot;</span><span class="p">,</span> PACKAGE <span class="o">=</span> <span class="s">&quot;grDevices&quot;</span><span class="p">)</span>
+    replicate<span class="p">(</span><span class="m">500</span><span class="p">,</span> plot<span class="p">(</span>x<span class="p">,</span> pch <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">21</span><span class="p">))</span>
+    dev.off<span class="p">()</span>
+<span class="p">})</span>
+<span class="c1">#   user  system elapsed</span>
+<span class="c1">#   1.51    0.02    1.53</span>
+system.time<span class="p">({</span>
+    pdf<span class="p">(</span>file.path<span class="p">(</span>tempdir<span class="p">(),</span> <span class="s">&quot;Rplots.pdf&quot;</span><span class="p">))</span>
+    replicate<span class="p">(</span><span class="m">500</span><span class="p">,</span> plot<span class="p">(</span>x<span class="p">,</span> pch <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">21</span><span class="p">))</span>
+    dev.off<span class="p">()</span>
+<span class="p">})</span>
+<span class="c1">#   user  system elapsed</span>
+<span class="c1">#  47.81    0.20   48.10</span>
+</code></pre></div>
+
+
+<p>One thing I don't understand in Sweave is that it evaluates the code chunk <em>twice</em> if its Sweave options contain <code>fig=TRUE</code>. I think this might be a waste of time as well, and this is why I like <a href="http://cran.r-project.org/package=pgfSweave">pgfSweave</a>, which has both the mechanism of caching R objects (using <strong>cacheSweave</strong>) and a smart way to cache graphics (using pgf).</p>
+
+<p><strong>WARNING</strong>: this null device may not work with plots that contain (math) expressions! (take a look at <code>demo(plotmath)</code> in case you do not know what are expressions in R graphics)</p>

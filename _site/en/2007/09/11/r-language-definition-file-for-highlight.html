@@ -1,0 +1,45 @@
+<blockquote><p>Note: I have written a function <em>highlight.def()</em> to dynamically generate the R definition file; just refer to the package '<a href="http://cran.r-project.org/package=animation">animation</a>' (>=0.1-4) in R.</p></blockquote>
+
+<p>Indeed <a href="http://www.andre-simon.de/">Highlight</a> is excellent for highlighting program code, however, the definition file for R language is far from complete. Below is the original definition file:</p>
+
+<pre><code>$KW_LIST(kwa)=if else repeat while function for in next break
+$KW_LIST(kwb)=NULL NA Inf NaN
+$STRINGDELIMITERS=" '
+$SL_COMMENT=#
+$ESCCHAR=\
+$SYMBOLS= ( ) [ ] { } , ; : &amp; | &lt; &gt; ! = / * % + -
+</code></pre>
+
+<p>Certainly, what we still need are those thousands of keywords in R, most of which are functions. Thus how can we get the names of functions in the packages of R? The solution is actually quite easy -- just use <code>ls()</code> with the environment name specified. The following is my source code for picking out the names of functions in all packages which are in the search path:</p>
+
+<div class="highlight"><pre><code class="r">lst <span class="o">=</span> search<span class="p">()</span>
+lst <span class="o">=</span> lst<span class="p">[</span>grep<span class="p">(</span><span class="s">&quot;package:&quot;</span><span class="p">,</span> lst<span class="p">)]</span>
+<span class="c1">########################################################</span>
+<span class="c1"># &quot;package:stats&quot; &quot;package:graphics&quot; &quot;package:grDevices&quot;</span>
+<span class="c1"># &quot;package:utils&quot; &quot;package:datasets&quot; &quot;package:methods&quot;</span>
+<span class="c1"># &quot;package:base&quot;</span>
+<span class="c1">########################################################</span>
+x <span class="o">=</span> <span class="kc">NULL</span>
+<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>lst<span class="p">))</span> x <span class="o">=</span> c<span class="p">(</span>x<span class="p">,</span> ls<span class="p">(</span>lst<span class="p">[</span>i<span class="p">]))</span>
+y <span class="o">=</span> x<span class="p">[</span><span class="o">-</span>grep<span class="p">(</span><span class="s">&quot;[]\\\ \\|\\(\\)\\[\\{\\^\\$\\*\\+\\?~#%&amp;=:!/@&lt;&gt;-]&quot;</span><span class="p">,</span> x<span class="p">)]</span>
+<span class="c1"># remove &quot;functions&quot; with special symbols using regexp</span>
+kw <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;if&quot;</span><span class="p">,</span> <span class="s">&quot;else&quot;</span><span class="p">,</span> <span class="s">&quot;repeat&quot;</span><span class="p">,</span> <span class="s">&quot;while&quot;</span><span class="p">,</span> <span class="s">&quot;function&quot;</span><span class="p">,</span>
+    <span class="s">&quot;for&quot;</span><span class="p">,</span> <span class="s">&quot;in&quot;</span><span class="p">,</span> <span class="s">&quot;next&quot;</span><span class="p">,</span> <span class="s">&quot;break&quot;</span><span class="p">,</span> <span class="s">&quot;ifelse&quot;</span><span class="p">,</span> <span class="s">&quot;switch&quot;</span><span class="p">,</span> <span class="s">&quot;NULL&quot;</span><span class="p">,</span>
+    <span class="s">&quot;NA&quot;</span><span class="p">,</span> <span class="s">&quot;Inf&quot;</span><span class="p">,</span> <span class="s">&quot;NaN&quot;</span><span class="p">,</span> <span class="s">&quot;TRUE&quot;</span><span class="p">,</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;FALSE&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
+<span class="c1"># remove some constants, etc</span>
+y <span class="o">=</span> setdiff<span class="p">(</span>y<span class="p">,</span> kw<span class="p">)</span>
+cat<span class="p">(</span>y<span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="p">,</span> file <span class="o">=</span> <span class="s">&#39;func.txt&#39;</span><span class="p">)</span> <span class="c1"># format the result as highlight needs</span>
+</code></pre></div>
+
+
+<p>The rest of work is just copy the result, and then paste them into the file "<code>r.lang</code>" (in directory "<code>langDefs</code>") as <code>$KW_LIST(kwc)</code>. Finally the definition codes are just like:</p>
+
+<pre><code>$KW_LIST(kwa)=if else repeat while function for in next break ifelse switch
+$KW_LIST(kwb)=NULL NA Inf NaN TRUE T FALSE F
+$KW_LIST(kwc)=acf acf2AR add.scope add1 addmargins aggregate ...
+$STRINGDELIMITERS=" '
+$SL_COMMENT=# $ESCCHAR=\
+$SYMBOLS= ( ) [ ] { } , ; : &amp; | &lt; &gt; ! ?= / * % ?+ -
+</code></pre>
+
+<p>At last, I'd like to thank <a href="http://www.andre-simon.de/">André Simon</a> for his help and suggestions for the improvements of this definition file.</p>

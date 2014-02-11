@@ -1,0 +1,76 @@
+<p>9号通宵大战，总算大致赶完了一篇报告。这个通宵让我创下了42小时不睡觉的记录，其惨烈程度可想而知。这篇 报告的主题是针对人口抽样调查数据进行分析，得出地区人口素质的一些描述性结论。其实我的相当大一部分时间都花在了处理数据上面，因为数据比较庞大，一共 有260万行、90个变量，数据文件大小在FoxPro存储格式下为424M，首先我要想办法将 FoxPro数据转化为一般常见的数据库格式，因此将之导出为dBase IV（<code>*.dbf</code>），这样SPSS就可以读了（当然也可以用R的RODBC包读）， 从dBase IV转为SPSS格式（<code>*.sav</code>）之后文件大小变为约1.5G，但很容易就能找出减小数据文件大小的办法：将以文本形式（String）表示的数字转化 为数值型（Numeric）即可（其实这份数据中的大部分数值都是用文本形式保存的，除非以零开头，都可以直接转换为数值形式）——我并不了解真正的 SPSS存储形式，但我猜测对于字符数据，至少要比数值数据多两个引号吧。初步整理之后，文件大小能缩减到400多M，当然我是不会直接用SPSS来作分 析的，因为速度太慢，一个变量的频数统计就要花半分钟时间，我可没那么多时间和耐心去等。最终我采用的办法是将数据存为纯文本格式，具体来说是逗号分隔符 数据（<code>*.csv</code>），然后开始用R来作分析。到这里，数据的预处理仍然没有结束，我为了让分析做得更快，又采取了一个策略：将每一列变量都单独存为一个数 据文件。要达到这样的目的，当然要首先把每一列变量提取出来，那么怎样依次提取变量呢？方法很简单，用SQL的select语句即可。文本文件当然也可以 当作数据库来处理，因为Windows一般会有文本文件的ODBC Driver，利用R的RODBC包结合SQL的select语句，变量就可以顺利被选择出来了。</p>
+
+<p>以下是一个R程序示例：</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># 生成一个随机的Poisson矩阵</span>
+<span class="o">&gt;</span> x <span class="o">=</span> apply<span class="p">(</span>matrix<span class="p">(</span>rpois<span class="p">(</span><span class="m">1e+05</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">10</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> as.integer<span class="p">)</span>
+<span class="o">&gt;</span> colnames<span class="p">(</span>x<span class="p">)</span> <span class="o">=</span> LETTERS<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">]</span> 将列命名为A<span class="o">-</span>J的十个字母
+<span class="o">&gt;</span> print<span class="p">(</span>x<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="p">])</span> 这是数据的形式
+       A B C D E <span class="k-Variable">F</span> G H I  J
+ <span class="p">[</span><span class="m">1</span><span class="p">,]</span>  <span class="m">2</span> <span class="m">2</span> <span class="m">9</span> <span class="m">3</span> <span class="m">5</span> <span class="m">5</span> <span class="m">3</span> <span class="m">8</span> <span class="m">3</span>  <span class="m">5</span>
+ <span class="p">[</span><span class="m">2</span><span class="p">,]</span>  <span class="m">4</span> <span class="m">5</span> <span class="m">1</span> <span class="m">2</span> <span class="m">6</span> <span class="m">3</span> <span class="m">6</span> <span class="m">6</span> <span class="m">4</span>  <span class="m">7</span>
+ <span class="p">[</span><span class="m">3</span><span class="p">,]</span>  <span class="m">7</span> <span class="m">4</span> <span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">3</span> <span class="m">5</span> <span class="m">1</span> <span class="m">8</span>  <span class="m">5</span>
+ <span class="p">[</span><span class="m">4</span><span class="p">,]</span>  <span class="m">5</span> <span class="m">7</span> <span class="m">2</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">6</span> <span class="m">7</span> <span class="m">4</span>  <span class="m">3</span>
+ <span class="p">[</span><span class="m">5</span><span class="p">,]</span> <span class="m">10</span> <span class="m">3</span> <span class="m">5</span> <span class="m">4</span> <span class="m">6</span> <span class="m">7</span> <span class="m">5</span> <span class="m">5</span> <span class="m">1</span>  <span class="m">5</span>
+ <span class="p">[</span><span class="m">6</span><span class="p">,]</span>  <span class="m">1</span> <span class="m">6</span> <span class="m">8</span> <span class="m">3</span> <span class="m">6</span> <span class="m">2</span> <span class="m">4</span> <span class="m">7</span> <span class="m">5</span>  <span class="m">3</span>
+ <span class="p">[</span><span class="m">7</span><span class="p">,]</span>  <span class="m">7</span> <span class="m">5</span> <span class="m">3</span> <span class="m">4</span> <span class="m">2</span> <span class="m">4</span> <span class="m">2</span> <span class="m">4</span> <span class="m">4</span>  <span class="m">7</span>
+ <span class="p">[</span><span class="m">8</span><span class="p">,]</span>  <span class="m">4</span> <span class="m">6</span> <span class="m">4</span> <span class="m">1</span> <span class="m">4</span> <span class="m">3</span> <span class="m">4</span> <span class="m">1</span> <span class="m">2</span>  <span class="m">3</span>
+ <span class="p">[</span><span class="m">9</span><span class="p">,]</span>  <span class="m">2</span> <span class="m">0</span> <span class="m">4</span> <span class="m">9</span> <span class="m">6</span> <span class="m">6</span> <span class="m">7</span> <span class="m">3</span> <span class="m">3</span> <span class="m">10</span>
+ <span class="p">[</span><span class="m">10</span><span class="p">,]</span>  <span class="m">2</span> <span class="m">2</span> <span class="m">8</span> <span class="m">2</span> <span class="m">5</span> <span class="m">9</span> <span class="m">4</span> <span class="m">5</span> <span class="m">4</span>  <span class="m">8</span>
+<span class="o">&gt;</span> f <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;c:/x.csv&quot;</span><span class="p">,</span> <span class="s">&quot;c:/x.RData&quot;</span><span class="p">,</span> <span class="s">&quot;c:/y.RData&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> write.csv<span class="p">(</span>x<span class="p">,</span> file <span class="o">=</span> f<span class="p">[</span><span class="m">1</span><span class="p">],</span> row.names <span class="o">=</span> <span class="k-Variable">F</span><span class="p">)</span> csv格式文件
+<span class="o">&gt;</span> save<span class="p">(</span>x<span class="p">,</span> file <span class="o">=</span> f<span class="p">[</span><span class="m">2</span><span class="p">])</span> 二进制文件
+<span class="o">&gt;</span> y <span class="o">=</span> x
+<span class="o">&gt;</span> save<span class="p">(</span>y<span class="p">,</span> file <span class="o">=</span> f<span class="p">[</span><span class="m">3</span><span class="p">],</span> ascii <span class="o">=</span> <span class="k-Variable">T</span><span class="p">)</span> ASCII文件
+<span class="o">&gt;</span> print<span class="p">(</span>file.info<span class="p">(</span>f<span class="p">)[,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">])</span> 看看三种文件的大小对比
+             size isdir mode
+ c<span class="o">:/</span>x.csv   <span class="m">213189</span> <span class="kc">FALSE</span>  <span class="m">666</span>
+ c<span class="o">:/</span>x.RData  <span class="m">64389</span> <span class="kc">FALSE</span>  <span class="m">666</span>
+ c<span class="o">:/</span>y.RData <span class="m">203336</span> <span class="kc">FALSE</span>  <span class="m">666</span>
+<span class="o">&gt;</span> require<span class="p">(</span>RODBC<span class="p">)</span> 加载RODBC包
+<span class="c1"># 注意，&quot;Text Files&quot;只是我自己命名的一个数据库连接，</span>
+<span class="c1"># 请按照图1、图2的步骤建立文本数据库驱动的连接</span>
+<span class="c1"># 这里也可以将odbcConnect()的参数设为空字符串&quot;&quot;</span>
+<span class="c1"># 这样系统会自动弹出选择ODBC连接的对话框</span>
+<span class="o">&gt;</span> channel <span class="o">=</span> odbcConnect<span class="p">(</span><span class="s">&quot;Text Files&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> print<span class="p">(</span>sqlColumns<span class="p">(</span>channel<span class="p">,</span> <span class="s">&quot;x.csv&quot;</span><span class="p">)[,</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">6</span><span class="p">)])</span>
+   TABLE_CAT TABLE_NAME COLUMN_NAME TYPE_NAME
+ <span class="m">1</span>       C<span class="o">:</span>\      x.csv           A   INTEGER
+ <span class="m">2</span>       C<span class="o">:</span>\      x.csv           B   INTEGER
+ <span class="m">3</span>       C<span class="o">:</span>\      x.csv           C   INTEGER
+ <span class="m">4</span>       C<span class="o">:</span>\      x.csv           D   INTEGER
+ <span class="m">5</span>       C<span class="o">:</span>\      x.csv           E   INTEGER
+ <span class="m">6</span>       C<span class="o">:</span>\      x.csv           <span class="k-Variable">F</span>   INTEGER
+ <span class="m">7</span>       C<span class="o">:</span>\      x.csv           G   INTEGER
+ <span class="m">8</span>       C<span class="o">:</span>\      x.csv           H   INTEGER
+ <span class="m">9</span>       C<span class="o">:</span>\      x.csv           I   INTEGER
+ <span class="m">10</span>      C<span class="o">:</span>\      x.csv           J   INTEGER
+<span class="c1"># 要依次保存所有的列，只需要把这里的SQL语句放在循环中即可</span>
+<span class="c1"># 比如paste(&quot;select&quot;, i, &quot;from x.csv&quot;, collapse = &quot; &quot;)</span>
+<span class="c1"># 让i在LETTERS[1:10]中循环</span>
+<span class="o">&gt;</span> sqlQuery<span class="p">(</span>channel<span class="p">,</span> <span class="s">&quot;select A,B from x.csv&quot;</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="p">]</span>
+    A B
+ <span class="m">1</span>   <span class="m">2</span> <span class="m">2</span>
+ <span class="m">2</span>   <span class="m">4</span> <span class="m">5</span>
+ <span class="m">3</span>   <span class="m">7</span> <span class="m">4</span>
+ <span class="m">4</span>   <span class="m">5</span> <span class="m">7</span>
+ <span class="m">5</span>  <span class="m">10</span> <span class="m">3</span>
+ <span class="m">6</span>   <span class="m">1</span> <span class="m">6</span>
+ <span class="m">7</span>   <span class="m">7</span> <span class="m">5</span>
+ <span class="m">8</span>   <span class="m">4</span> <span class="m">6</span>
+ <span class="m">9</span>   <span class="m">2</span> <span class="m">0</span>
+ <span class="m">10</span>  <span class="m">2</span> <span class="m">2</span>
+<span class="o">&gt;</span> odbcClose<span class="p">(</span>channel<span class="p">)</span> 关闭ODBC连接
+<span class="o">&gt;</span> file.remove<span class="p">(</span>f<span class="p">)</span> 删掉前面生成的三个文件
+</code></pre></div>
+
+
+<p><img src="http://i.imgur.com/rdlDQ.png" alt="新建数据源（控制面板--&gt;管理工具--&gt;数据源 (ODBC)；添加）" />
+图1：新建数据源（控制面板-->管理工具-->数据源 (ODBC)；添加）</p>
+
+<p><img src="http://i.imgur.com/3GH3V.png" alt="Microsoft Text Driver" />
+图2：Microsoft Text Driver</p>
+
+<p>用R处理完数据之后，预处理过程才算真正结束了，这里要特别提一句的是，由于R的<code>save()</code>函数默认采用二进制存储方式（而不是直接存储ASCII字符），数据的大小便可以被大幅度压缩，最后以二进制数据形式存储的这90个变量大小之和才50M左右——数据大小被压缩到原来的1/10。</p>
+
+<p>这次采取的另一个节省时间策略就是<a href="/cn/2007/08/remote-connection-under-windows/">上一篇日志</a>里 提到的远程桌面连接；我自己这台电脑跑起来比较慢，于是我把这些数据处理工作都交给了办公室的另一台电脑，在那里执行我的R语句，然后回到自己的电脑同时 做别的工作，等那边的计算结束之后再把结果复制回来就可以了。由于R的计算都是在内存（RAM）中进行，大家都知道读写内存的速度比读写硬盘或其它存储的 速度要快很多倍，R的计算速度尤其是在这种大型数据的情况下就显得极其快，频数统计（<code>table()</code>函数）往往都是半秒不到就计算出来了。 当然，这世上不存在绝对好或者绝对差的东西，读写内存必然对内存有一定的要求（主要是内存大小），比如当数据很庞大的时候，Windows下就很难把数据 一口气读进来。我前面将每一列变量单独存为数据文件的做法其实也是回避这个缺点，因为我的分析并不需要每次都用到所有的变量，而加载一列数据的时间也是很短的，用谁就加载谁。</p>

@@ -1,0 +1,49 @@
+<p>This is not the first time I have ranted about <a href="http://en.wikipedia.org/wiki/Command-line_interface#Command_prompt">command prompts</a>, but I cannot help ranting about them whenever I saw them in source code. In short, a piece of source code with command prompts is like a bag of cooked shrimps in the market -- it does not make sense, and an otherwise good thing is ruined. I like cooking raw shrimps (way more tasty).</p>
+
+<p>The command prompt here refers to the characters you saw in commands as the prefix, which indicates "I'm ready to take your commands". In a Unix shell, it is often <code>$</code>; in R, it is <code>&gt;</code> by default. A shell example from the <a href="https://live.gnome.org/GTK%2B/OSX/Building">GTK web page</a>:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>jhbuild bootstrap
+<span class="nv">$ </span>jhbuild build meta-gtk-osx-bootstrap
+<span class="nv">$ </span>jhbuild build meta-gtk-osx-core
+</code></pre></div>
+
+
+<p>And an R example from <a href="http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf">R and Data Mining</a>:</p>
+
+<div class="highlight"><pre><code class="r"><span class="o">&gt;</span> data<span class="p">(</span><span class="s">&quot;bodyfat&quot;</span><span class="p">,</span> package <span class="o">=</span> <span class="s">&quot;mboost&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span> str<span class="p">(</span>bodyfat<span class="p">)</span>
+</code></pre></div>
+
+
+<p>There are numerous examples like this on the web and in the books (sorry, GTK developers and Yanchang Zhao; I came to you randomly). Most people seem to post their code like this. I can probably spend half a day figuring out a problem in measure theory, but I cannot, even if I spend two years, figure out why people include command prompts when publishing source code.</p>
+
+<blockquote><p>Isn't it too obvious that you are wasting the time of your readers?</p></blockquote>
+
+<p>Whenever the command prompts are present in the source code, the reader has to copy the code, <em>remove the prompts</em>, and use the code. Why there has to be an additional step of removing the prompts? Why cannot you make your code <em>directly usable</em> to other people?</p>
+
+<div class="highlight"><pre><code class="bash">jhbuild bootstrap
+jhbuild build meta-gtk-osx-bootstrap
+jhbuild build meta-gtk-osx-core
+</code></pre></div>
+
+
+
+
+<div class="highlight"><pre><code class="r">data<span class="p">(</span><span class="s">&quot;bodyfat&quot;</span><span class="p">,</span> package <span class="o">=</span> <span class="s">&quot;mboost&quot;</span><span class="p">)</span>
+str<span class="p">(</span>bodyfat<span class="p">)</span>
+</code></pre></div>
+
+
+<p>I'm aware of the column selection mode in some editors. I just do not understand why the correct thing should not happen in the very beginning.</p>
+
+<p>Some may argue the prompt helps typesetting, and it makes the code stand out because of the common prefix. In R, <code>+</code> means the last line is not complete, so <code>&gt;</code> and <code>+</code> present the structure of the code, e.g.</p>
+
+<div class="highlight"><pre><code class="r"><span class="o">&gt;</span> <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span> print<span class="p">(</span>i<span class="p">)</span>
+<span class="o">+</span> <span class="p">}</span>
+</code></pre></div>
+
+
+<p>I believe the structure of code should be presented by the level of indentation, which does not hurt the source code. To make the code stand out, choose a background color (shading) for it. That is the only correct way for typesetting purposes.</p>
+
+<p>So, please stop code pollution, and post usable code.</p>

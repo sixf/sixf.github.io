@@ -1,0 +1,44 @@
+<blockquote><p>Note: since R 3.0.0, you can build Markdown vignettes naturally; see http://yihui.name/knitr/demo/vignette/ for details.</p></blockquote>
+
+<p>What is the best resource to learn an R package? Many R users know the almighty question mark <code>?</code> in R. For example, type <code>?lm</code> and you will see the documentation of the function <code>lm</code>. If you know nothing about a package, you can take a look at the HTML help by</p>
+
+<div class="highlight"><pre><code class="r">help.start<span class="p">()</span>
+</code></pre></div>
+
+
+<p>where you can find the complete list of documentation by clicking the link <code>Packages</code>. The individual help pages are often boring and difficult to read, because you cannot see the whole picture of the elephant. That is where package vignettes can help a lot. A package vignette is like a short paper (in fact some are real journal papers), which gives you an overview of this package, and sometimes with examples. Package vignettes are not a required component of an R package, so you may not find them in all packages. For those packages which contain vignettes, you can find them by <code>browseVignettes()</code>, e.g. for the <strong>knitr</strong> package</p>
+
+<div class="highlight"><pre><code class="r">browseVignettes<span class="p">(</span>package <span class="o">=</span> <span class="s">&#39;knitr&#39;</span><span class="p">)</span>
+<span class="c1"># or go to</span>
+system.file<span class="p">(</span><span class="s">&#39;doc&#39;</span><span class="p">,</span> package <span class="o">=</span> <span class="s">&#39;knitr&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>You can also see links to vignettes from <code>help.start()</code>: click <code>Packages</code> and go to the package documentation, or</p>
+
+<div class="highlight"><pre><code class="r">help.start<span class="p">()</span>
+browseURL<span class="p">(</span>paste0<span class="p">(</span><span class="s">&#39;http://127.0.0.1:&#39;</span><span class="p">,</span> tools<span class="o">:::</span>httpdPort<span class="p">,</span>
+          <span class="s">&#39;/library/knitr/doc/index.html&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p>Most vignettes are written in LaTeX/Sweave since that is the official approach (see <a href="http://cran.r-project.org/doc/manuals/R-exts.html">Writing R Extensions</a>). In the past <a href="http://www.google-melange.com/gsoc/project/google/gsoc2012/cloud_wei/16001">Google Summer of Code</a>, Taiyun Wei explored a few interesting directions of the <strong>knitr</strong> package, and one of them was to build HTML vignettes for R packages from Markdown, which is much easier to write than LaTeX.</p>
+
+<p>For package authors who are interested, Taiyun's <a href="https://github.com/taiyun/corrplot/"><strong>corrplot</strong> package</a> (on Github) can serve as an example. The markdown vignette is <a href="https://github.com/taiyun/corrplot/blob/master/inst/doc/index.Rmd">inst/doc/index.Rmd</a>, and it is built to HTML by <strong>knitr</strong> with the <a href="https://github.com/taiyun/corrplot/blob/master/inst/doc/Makefile">Makefile</a>. When you run <code>R CMD build corrplot</code>, <code>index.Rmd</code> will be converted to <code>index.html</code>, which you can view it in <code>help.start()</code> after <code>R CMD INSTALL corrplot_*.tar.gz</code> (DO NOT use <code>devtools::install_github()</code> here because it does not run <code>R CMD build</code>).</p>
+
+<p>The Makefile should be pretty clear: it is merely a call to <code>knitr::knit2html()</code>. The vignette <code>index.Rmd</code> is a simple R Markdown document; if you are not familiar with this format, see this video for a brief introduction:</p>
+
+<iframe src="http://www.screenr.com/embed/qcv8" width="600" height="365" frameborder="0"></iframe>
+
+
+<p>Note you need</p>
+
+<ol>
+<li><code>Suggests: knitr</code> in your package DESCRIPTION file to pass <code>R CMD check</code>, and</li>
+<li>a fake <code>*.Rnw</code> file under <code>inst/doc/</code> to trigger the Makefile</li>
+</ol>
+
+
+<p>Once you have this HTML vignette, you can also publish it elsewhere. For example, either <a href="http://rpubs.com">RPubs.com</a> or <a href="http://pages.github.com/">GitHub pages</a> to gain more publicity (see <a href="http://rpubs.com/mcmurdie/plot_heatmap">an example</a> of the <strong>phyloseq</strong> package). It is important to let users be aware of package vignettes, and a web link is apparently easier to tell other people than <code>browseVignettes()</code> (I felt very uncomfortable when I was writing the first half of this post because the vignettes are hidden so deep, hence so hard to describe).</p>
+
+<p>So why not start building an HTML vignette for your package with R Markdown now? Think about animations, interactive content (e.g. googleVis), MathJax equations and other exciting web stuff.</p>

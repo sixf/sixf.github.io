@@ -1,0 +1,31 @@
+<p>Tal Galili requested in the R-help mailing list for a <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a> brush for the R language, so that Wordpress users can highlight their R code easily. I promised to contribute a few minutes on this task, and here is the result:</p>
+
+<script src="https://gist.github.com/1804862.js?file=shBrushR.js"></script>
+
+
+<p>Hopefully Tal can persuade the Wordpress.com manager to add support for R syntax highlighting, so these users do not need to worry much about the installation and configuration. For Wordpress users, there are a couple of choices to make use of SyntaxHighlighter, e.g. the SyntaxHighlighter Evolved plugin, but I find this plugin somehow out-dated because it is still using an old version of SyntaxHighlighter, and it looks not easy to add support for new languages. Therefore I decided not to use any Wordpress plugins, but to manually add the necessary HTML code in my header and footer; this approach works for any HTML pages.</p>
+
+<p>You need to upload the latest version (3.0.83) of SyntaxHighlighter somewhere first (of course, with the R brush <code>shBrushR.js</code> added in the <code>scripts</code> directory), change the following paths accordingly and insert them before the <code>&lt;body&gt;</code> tag in your HTML page:</p>
+
+<script src="https://gist.github.com/1804862.js?file=brush-r-head.html"></script>
+
+
+<p>Then add these lines in the footer area (right before the <code>&lt;/body&gt;</code> tag):</p>
+
+<script src="https://gist.github.com/1804862.js?file=brush-loader.html"></script>
+
+
+<p>Above is only my configuration; you may refer to the manual of SyntaxHighlighter <a href="http://alexgorbatchev.com/SyntaxHighlighter/manual/api/autoloader.html">for more information</a>. To add those HTML code in your pages, you may modify the theme files (typically the <code>header.php</code> and <code>footer.php</code>). To make use of highlighting, you need to assign a special CSS class to your <code>&lt;pre&gt;</code> tag, e.g.</p>
+
+<script src="https://gist.github.com/1804862.js?file=brush-r-usage.html"></script>
+
+
+<p>You may double-click on the code to select all of them, and copy them with normally (e.g. with <code>Ctrl + C</code>). The old version of SyntaxHighlighter uses a Flash file to copy the code to the clipboard and you have to select the line numbers as well when you only want to select the code; I do not like these features.</p>
+
+<p>Finally, the JS brush file can be improved in a few aspects but in fact I'm not quite good at JS RegExp, so I leave these possible improvements to the readers:</p>
+
+<ol>
+<li>highlight the function arguments -- loosely speaking, the pattern is: they are in parentheses <code>()</code> followed by <code>=</code>; the first argument follows <code>(</code> and others follow <code>,</code>.</li>
+<li>highlight the variables -- those strings followed by <code>&lt;-</code> or <code>=</code> when <code>=</code> is not in paretheses.</li>
+</ol>
+
