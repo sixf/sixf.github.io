@@ -18,9 +18,9 @@ navigations:
   - title: About
     class: fa fa-user
     href: /about.html
-  - title: Gallery
+  - title: Vitea
     class: fa fa-film
-    href: http://foto.lhzhang.com
+    href: /about
   - title: Blogroll
     class: fa fa-link
     href: /links.html
