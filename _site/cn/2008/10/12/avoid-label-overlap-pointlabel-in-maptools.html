@@ -1,7 +1,0 @@
-<p><strong>maptools</strong>包中的<code>pointLabel()</code>可以利用模拟退火算法或者遗传算法来解决图中文本标签的重叠问题。R本身提供了度量文本高度和宽度的函数<code>strwidth()</code>和<code>strheight()</code>，因此标签的放置问题本质上就是一个最优化问题，目标函数是标签所占矩形之间重叠面积之和，参数是标签的摆放位置（例如矩形的顶点坐标），问题就是求得参数使目标函数最小化。<code>pointLabel()</code>采用了模拟退火算法和遗传算法，另外，<strong>plotrix</strong>包中的<code>thigmophobe.labels()</code>利用简单的距离计算可以得出标签摆在点的下、左、上、右哪一面可以使得重叠最小化。以下是前面“<a href="/cn/2008/10/china-map-and-city-locations-with-r">用R画中国地图并标注城市位置</a>”一文中曾经用到的例子，这里我们用<code>pointLabel()</code>添加标签：</p>
-
-<p><img src="http://i.imgur.com/pRQqX.png" alt="maptools中的pointLabel()添加文本标签" /></p>
-
-<p>相比之下，<code>thigmophobe.labels()</code>的功能就差一些了：</p>
-
-<p><img src="http://i.imgur.com/JKmUh.png" alt="plotrix中的thigmophobe.labels()添加文本标签" /></p>
