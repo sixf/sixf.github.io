@@ -15,7 +15,7 @@ including *Cyclobalanopsis glauca*, *Castanopsis sclerophylla*, *Smilax
 davidiana*, *Grewia biloba* and *Loropetalum chinense*. The climate is a
 typical subtropical monsoon zone and is strongly seasonal. 
 
-<p style="text-align: center;"><span style="text-align: center;"><iframe src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=29.527762,118.875847&amp;daddr=&amp;hl=en&amp;geocode=&amp;sll=29.505952,118.87928&amp;sspn=0.16105,0.284615&amp;t=h&amp;doflg=ptk&amp;mra=mift&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=29.548969,118.911896&amp;spn=0.286721,0.439453&amp;z=11&amp;output=embed" height="480" width="640" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<p style="text-align: center;"><span style="text-align: left;"><iframe src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=29.527762,118.875847&amp;daddr=&amp;hl=en&amp;geocode=&amp;sll=29.505952,118.87928&amp;sspn=0.16105,0.284615&amp;t=h&amp;doflg=ptk&amp;mra=mift&amp;mrsp=0&amp;sz=12&amp;ie=UTF8&amp;ll=29.548969,118.911896&amp;spn=0.286721,0.439453&amp;z=11&amp;output=embed" height="480" width="640" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 
 [View Larger Map](https://maps.google.com/maps?f=d&source=embed&saddr=29.527762,118.875847&daddr=&hl=en&geocode=&sll=29.505952,118.87928&sspn=0.16105,0.284615&t=h&doflg=ptk&mra=mift&mrsp=0&sz=12&ie=UTF8&ll=29.548969,118.911896&spn=0.286721,0.439453&z=11)
