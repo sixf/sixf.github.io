@@ -1,0 +1,10 @@
+---
+title: Gutianshan Reserve
+layout: default
+---
+
+<span style="font-size: medium;">The 24-hectare (400 m×600 m) permanent plot located in <a href="http://en.wikipedia.org/wiki/Gutianshan_National_Nature_Reserve" target="_blank">Gutianshan Reserve</a> (29°15′6″–29°15′21″ N, 118°7′1″–118°7′24″ E). The protected area of entire Gutianshan Reserve is approximately 81 km<sup>2</sup>, with 57% as natural forest. Gutianshan Reserve was set up to protect a portion of the old-growth evergreen broad-leaved forest. <em>Castanopsis eyrei</em> and <em>Schima superba</em> are the dominant species in this forest and in the plot. The vegetation habitats in the plot are the typical habitats in this forest. The annual mean temperature in this region is 15.3 </span>°<span style="font-size: medium;">C</span> <span style="font-size: medium;">an</span><span style="font-size: medium;">d annual mean precipitation is 1964 mm according to the data from 1958 to 1986. Most of the forest in our plot is now in the middle and late successional stages.</span>
+<span style="font-size: medium;">For detail information, please visit the website of <a title="" href="http://www.cfbiodiv.org/new.asp?cla2=136&amp;cla=136" target="_blank"><strong>C</strong>hinese <strong>F</strong>orest <strong>Biodiv</strong>ersity Monitoring Network</a>.</span>
+
+<iframe src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=29.253024,118.118713&amp;daddr=&amp;hl=en&amp;geocode=&amp;sll=29.252968,118.11985&amp;sspn=0.010091,0.017788&amp;t=h&amp;doflg=ptk&amp;mra=mift&amp;mrsp=0&amp;sz=16&amp;ie=UTF8&amp;ll=29.251508,118.11676&amp;spn=0.044931,0.051498&amp;z=13&amp;output=embed" height="500" width="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<small><a style="color: #0000ff; text-align: left;" href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=29.253024,118.118713&amp;daddr=&amp;hl=en&amp;geocode=&amp;sll=29.252968,118.11985&amp;sspn=0.010091,0.017788&amp;t=h&amp;doflg=ptk&amp;mra=mift&amp;mrsp=0&amp;sz=16&amp;ie=UTF8&amp;ll=29.251508,118.11676&amp;spn=0.044931,0.051498&amp;z=13" target="_blank">View Larger Map</a></small>
