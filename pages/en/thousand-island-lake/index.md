@@ -1,6 +1,6 @@
 ---
 title: Thousand Island Lake
-layout: home
+layout: page
 ---
 
 The [Thousand Island Lake](http://en.wikipedia.org/wiki/Qiandao_Lake) lies at 29°22′ to
