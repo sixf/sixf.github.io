@@ -1,5 +1,5 @@
 ---
-title: Gutianshan Reserve
+title: 古田山国家级自然保护区
 layout: home-child
 ---
 
