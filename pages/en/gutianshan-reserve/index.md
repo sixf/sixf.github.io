@@ -1,6 +1,6 @@
 ---
 title: Gutianshan Reserve
-layout: default
+layout: home-child
 ---
 
 <span style="font-size: medium;">The 24-hectare (400 m×600 m) permanent plot located in <a href="http://en.wikipedia.org/wiki/Gutianshan_National_Nature_Reserve" target="_blank">Gutianshan Reserve</a> (29°15′6″–29°15′21″ N, 118°7′1″–118°7′24″ E). The protected area of entire Gutianshan Reserve is approximately 81 km<sup>2</sup>, with 57% as natural forest. Gutianshan Reserve was set up to protect a portion of the old-growth evergreen broad-leaved forest. <em>Castanopsis eyrei</em> and <em>Schima superba</em> are the dominant species in this forest and in the plot. The vegetation habitats in the plot are the typical habitats in this forest. The annual mean temperature in this region is 15.3 </span>°<span style="font-size: medium;">C</span> <span style="font-size: medium;">an</span><span style="font-size: medium;">d annual mean precipitation is 1964 mm according to the data from 1958 to 1986. Most of the forest in our plot is now in the middle and late successional stages.</span>

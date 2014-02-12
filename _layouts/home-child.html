@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Xingfeng Si | 斯幸峰</title>
+  <title>{{ page.title }} | {{ site.author }}</title>
   <meta name="author" content="Xingfeng Si | 斯幸峰"/>
   <meta name="viewport" content="width=device-width; initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/media/css/home.css">
@@ -43,14 +43,8 @@
 </head>
 <body>
   <div class="container">
-  <h1 class="sitename">Xingfeng Si</h1>
-  <ul class="nav pills">
-  <li><a href="/">Home</a></li>
-  <li><a href="/cn/">Chinese</a></li>
-  <li><a href="/en/">English</a></li>
-</ul>
-{% if page.avatar %} <p><img src="/files/images/avatar.jpg" title="Xingfeng Si" align="right" /></p> {% endif %}
-{{ content }}
+  <h1 class="sitename">{{ page.title }}</h1>
+  
 <footer>
   </footer>
 </div>
