@@ -5,8 +5,7 @@ layout: home
 
 Welcome to my homepage! I am [Xingfeng Si](/ "Xingfeng Si"), a PhD
 candidate in animal ecology at [Zhejiang
-University](http://www.zju.edu.cn "Zhejiang University"), China,
-supervised by [Prof. Ping
+University](http://www.zju.edu.cn "Zhejiang University"), China supervised by [Prof. Ping
 Ding](http://mypage.zju.edu.cn/personnelCard/pingding). Generally, my
 research interest lies in island biogeography, community ecology,
 conservation biology and ornithology. 
