@@ -14,7 +14,7 @@ What are the underlying mechanisms shaping the animal distribution on fragmented
 land-bridge system have similar patterns as expected by the theory of
 island biogeography? To ask these questions, I started my researches of
 bird communities since 2008 in the [Thousand Island
-Lake](/links/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
+Lake](/en/links/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
 TIL is a large inundated reservoir with 1078 islands which was created
 in 1959 by the construction of Xin'anjiang Dam. I used the long-term
 counts of breeding bird communities to quantify the
@@ -27,7 +27,7 @@ islands.
 Camera trapping of wildlife, especially for some elusive and
 cryptic animals, had been practiced and become an available method to
 estimate the abundance of animals. I collected occupancy data of birds and mammals using camera traps during 2009 - 2012 in
-[Gutianshan Reserve](/links/gutianshan-reserve/ "Gutianshan Reserve"),
+[Gutianshan Reserve](/en/links/gutianshan-reserve/ "Gutianshan Reserve"),
 China to estimate the population density adjusted with
 detectability of each species. 
 
