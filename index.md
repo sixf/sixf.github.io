@@ -19,7 +19,7 @@ Lake](/links/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
 TIL is a large inundated reservoir with 1078 islands which was created
 in 1959 by the construction of Xin'anjiang Dam. I used the long-term
 counts of breeding bird communities to quantify the
-colonization-extinction dynamics on a set of islands. In additions to
+colonization-extinction dynamics on a set of islands as to test the theory. In additions to
 the bird studies, I used the occupancy data of lizards and small mammals
 to unveil the biogeographical patterns of beta diversity, which will
 provide more detail into the biodiversity conservation on fragmented
@@ -27,17 +27,16 @@ islands.
 
 Camera trapping of wildlife, especially for some elusive and
 cryptic animals, had been practiced and become an available method to
-estimate the abundance of animals. I spent three years to collect the
-bird and mammal data using camera traps during 2009 - 2012 in
+estimate the abundance of animals. I collected occupancy data of birds and mammals using camera traps during 2009 - 2012 in
 [Gutianshan Reserve](/links/gutianshan-reserve/ "Gutianshan Reserve"),
-China, in order to estimate the population density adjusted with
-detectabilities of animal species. 
+China to estimate the population density adjusted with
+detectability of each species. 
 
 Besides the academic researches, I
 like reading, traveling and cycling. One of my important dreams is the
 long travel from Chengdu to Lhasa (the capital of Tibet) by bike. I am
-sure this journey will be a great chance to enjoy the unique landscape
-and discover the biodiversity of Qinghai-Tibet Plateau. I am also a
+sure it will be a great journey to enjoy the unique landscape
+and discover the biodiversity on the Qinghai-Tibet Plateau. I am also a
 [postcrossser](http://www.postcrossing.com/user/Xingfeng "Postcrossing"),
 please feel free to [contact me](/en/about) if you would like to swap
 postcards with me. 
