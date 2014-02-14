@@ -2,13 +2,45 @@
 layout: home
 ---
 
-Welcome to my homepage! I am <a href="/" title="Xingfeng Si">Xingfeng Si</a>, a PhD candidate in animal ecology at <a href="http://www.zju.edu.cn" title="Zhejiang University">Zhejiang University</a>, China, supervised by <a href="http://mypage.zju.edu.cn/personnelCard/pingding">Prof. Ping Ding</a>. Generally, my research interest lies in island biogeography, community ecology, conservation biology and ornithology. 
 
-What are the underlying mechanisms shaping the animal distribution on fragmented islands? Do the animal in land-bridge system have similar patterns as expected by the theory of island biogeography? To ask these questions, I started my researches of bird communities since 2008 in the <a href="/links/thousand-island-lake/" title="Thousand Island Lake">Thousand Island Lake</a> (TIL), China. TIL is a large inundated reservoir with 1078 islands which was created in 1959 by the construction of Xin'anjiang Dam. I used the long-term counts of breeding bird communities to quantify the colonization-extinction dynamics on a set of islands. In additions to the bird studies, I used the occupancy data of lizards and small mammals to unveil the biogeographical patterns of beta diversity, which will provide more detail into the biodiversity conservation on fragmented islands. 
+Welcome to my homepage! I am [Xingfeng Si](/ "Xingfeng Si"), a PhD
+candidate in animal ecology at [Zhejiang
+University](http://www.zju.edu.cn "Zhejiang University"), China,
+supervised by [Prof. Ping
+Ding](http://mypage.zju.edu.cn/personnelCard/pingding). Generally, my
+research interest lies in island biogeography, community ecology,
+conservation biology and ornithology. 
 
-Camera trapping of wildlife, especially for some elusive and cryptic animals, had been practiced and become an available method to estimate the abundance of animals. I spent three years to collect the bird and mammal data using camera traps during 2009 - 2012 in <a href="/links/gutianshan-reserve/" title="Gutianshan Reserve">Gutianshan Reserve</a>, China, in order to estimate the population density adjusted with detectabilities of animal species. 
+What are the underlying mechanisms shaping the animal distribution on fragmented islands? Do the animal in
+land-bridge system have similar patterns as expected by the theory of
+island biogeography? To ask these questions, I started my researches of
+bird communities since 2008 in the [Thousand Island
+Lake](/links/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
+TIL is a large inundated reservoir with 1078 islands which was created
+in 1959 by the construction of Xin'anjiang Dam. I used the long-term
+counts of breeding bird communities to quantify the
+colonization-extinction dynamics on a set of islands. In additions to
+the bird studies, I used the occupancy data of lizards and small mammals
+to unveil the biogeographical patterns of beta diversity, which will
+provide more detail into the biodiversity conservation on fragmented
+islands. 
 
-Besides the academic researches, I like reading, traveling and cycling. One of my important dreams is the long travel from Chengdu to Lhasa (the capital of Tibet) by bike. I am sure this journey will be a great chance to enjoy the unique landscape and discover the biodiversity of Qinghai-Tibet Plateau. I am also a <a href="http://www.postcrossing.com/user/Xingfeng" title="Postcrossing">postcrossser</a>, please feel free to <a href="/en/about">contact me</a> if you would like to swap postcards with me.
+Camera trapping of wildlife, especially for some elusive and
+cryptic animals, had been practiced and become an available method to
+estimate the abundance of animals. I spent three years to collect the
+bird and mammal data using camera traps during 2009 - 2012 in
+[Gutianshan Reserve](/links/gutianshan-reserve/ "Gutianshan Reserve"),
+China, in order to estimate the population density adjusted with
+detectabilities of animal species. 
+
+Besides the academic researches, I
+like reading, traveling and cycling. One of my important dreams is the
+long travel from Chengdu to Lhasa (the capital of Tibet) by bike. I am
+sure this journey will be a great chance to enjoy the unique landscape
+and discover the biodiversity of Qinghai-Tibet Plateau. I am also a
+[postcrossser](http://www.postcrossing.com/user/Xingfeng "Postcrossing"),
+please feel free to [contact me](/en/about) if you would like to swap
+postcards with me. 
 
 ---
 
