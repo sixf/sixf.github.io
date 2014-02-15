@@ -11,16 +11,16 @@ research interest lies in island biogeography, community ecology,
 conservation biology and ornithology. 
 
 What are the underlying mechanisms shaping the animal distribution on fragmented islands? Do the animal in
-land-bridge system have similar patterns as expected by the theory of
-island biogeography? To ask these questions, I started my researches of
+land-bridge system have similar pattern as expected by the theory of
+island biogeography? To ask these questions, I started my research of
 bird communities since 2008 in the [Thousand Island
 Lake](/en/pages/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
 TIL is a large inundated reservoir with 1078 islands which was created
 in 1959 by the construction of Xin'anjiang Dam. I used the long-term
 counts of breeding bird communities to quantify the
-colonization-extinction dynamics on a set of islands as to test the theory. In additions to
+colonization-extinction dynamics on a set of islands, so as to test the theory. In additions to
 the bird studies, I used the occupancy data of lizards and small mammals
-to unveil the biogeographical patterns of beta diversity, which will
+to unveil the biogeographical pattern of beta diversity, which will
 provide more detail into the biodiversity conservation on fragmented
 islands. 
 
@@ -37,7 +37,7 @@ long travel from Chengdu to Lhasa (the capital of Tibet) by bike. I am
 sure it will be a great journey to enjoy the unique landscape
 and discover the biodiversity on the Qinghai-Tibet Plateau. I am also a
 [postcrossser](http://www.postcrossing.com/user/Xingfeng "Postcrossing"),
-please feel free to [contact me](/en/about) if you would like to swap
+please feel free to [contact me](/en/vitae) if you would like to swap
 postcards with me. 
 
 ---
