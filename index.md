@@ -3,42 +3,10 @@ layout: home
 ---
 
 
-Welcome to my homepage! I am [Xingfeng Si](/ "Xingfeng Si"), a PhD
-candidate in animal ecology at [Zhejiang
-University](http://www.zju.edu.cn "Zhejiang University"), China supervised by [Prof. Ping
-Ding](http://mypage.zju.edu.cn/personnelCard/pingding). Generally, my
-research interest lies in island biogeography, community ecology,
-conservation biology and ornithology. 
+Welcome to Xingfeng’s homepage! [Xingfeng](/ "Xingfeng Si") is currently a PhD candidate in animal ecology at the [College of Life Sciences](http://www.cls.zju.edu.cn/en/) of [Zhejiang University](http://www.zju.edu.cn "Zhejiang University"), China under the supervision of [Prof. Ping Ding](http://mypage.zju.edu.cn/personnelCard/pingding). He gained his B.S. in biology from [Zhejiang Normal University](http://www.zjnu.cn) in 2008. Xingfeng was visiting [The Pimm Group](http://www.thepimmgroup.org]) at [Duke University](http://www.duke.edu) in 2012-2013 and he is interested in the effects of habitat fragmentation on species distributions and biodiversity conservations of animal communities on fragmented islands, and the implications of wildlife monitoring using camera traps on conservation managements. Broadly, his research interest lies in island biogeography, community ecology, conservation biology and ornithology. See more details in his research.
 
-What are the underlying mechanisms shaping the animal distribution on fragmented islands? Do the animal in
-land-bridge system have similar pattern as expected by the theory of
-island biogeography? To ask these questions, I started my research of
-bird communities since 2008 in the [Thousand Island
-Lake](/en/pages/thousand-island-lake/ "Thousand Island Lake") (TIL), China.
-TIL is a large inundated reservoir with 1078 islands which was created
-in 1959 by the construction of Xin'anjiang Dam. I used the long-term
-counts of breeding bird communities to quantify the
-colonization-extinction dynamics on a set of islands, so as to test the theory. In additions to
-the bird studies, I used the occupancy data of lizards and small mammals
-to unveil the biogeographical pattern of beta diversity, which will
-provide more detail into the biodiversity conservation on fragmented
-islands. 
+Besides the academic researches, Xingfeng like reading, traveling and cycling. One of his important dreams is the 2200-km travel from [Chengdu to Lhasa](http://en.wikipedia.org/wiki/China_National_Highway_318) (the capital of Tibet) by bike. This journey would provide a great opportunity to enjoy the unique landscape and discover the biodiversity on the [Qinghai-Tibet Plateau](http://en.wikipedia.org/wiki/Qinghai-Tibet_Plateau).
 
-Camera trapping of wildlife, especially for some elusive and
-cryptic animals, had been practiced and become an available method to
-estimate the abundance of animals. I collected occupancy data of birds and mammals using camera traps during 2009 - 2012 in
-[Gutianshan Reserve](/en/pages/gutianshan-reserve/ "Gutianshan Reserve"),
-China to estimate the population density adjusted with
-detectability of each species. 
-
-Besides the academic researches, I
-like reading, traveling and cycling. One of my important dreams is the
-long travel from Chengdu to Lhasa (the capital of Tibet) by bike. I am
-sure it will be a great journey to enjoy the unique landscape
-and discover the biodiversity on the Qinghai-Tibet Plateau. I am also a
-[postcrossser](http://www.postcrossing.com/user/Xingfeng "Postcrossing"),
-please feel free to [contact me](/en/vitae) if you would like to swap
-postcards with me. 
 
 ---
 
