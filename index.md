@@ -3,7 +3,7 @@ layout: home
 ---
 
 
-Welcome to Xingfeng’s homepage! 
+## Welcome to Xingfeng’s homepage! 
 
 [Xingfeng](/ "Xingfeng Si") is currently a PhD candidate in animal ecology at the [College of Life Sciences](http://www.cls.zju.edu.cn/en/) of [Zhejiang University](http://www.zju.edu.cn "Zhejiang University"), China under the supervision of [Prof. Ping Ding](http://mypage.zju.edu.cn/personnelCard/pingding). He gained his B.S. in biology from [Zhejiang Normal University](http://www.zjnu.cn) in 2008. Xingfeng was a visiting student in [The Pimm Group](http://www.thepimmgroup.org]) at [Duke University](http://www.duke.edu) in 2012-2013 and he is interested in the effects of habitat fragmentation on species distributions and biodiversity conservations of animal communities on fragmented islands, and the implications of wildlife monitoring using camera traps on conservation managements. Broadly, his research interest lies in island biogeography, community ecology, conservation biology and ornithology. See more details in his [research](/en/about "About Me").
 
