@@ -5,9 +5,14 @@ layout: home
 
 ## Welcome to Xingfeng’s homepage! 
 
-<p style="font-size: medium;">[Xingfeng](/ "Xingfeng Si") is currently a PhD candidate in animal ecology at the [College of Life Sciences](http://www.cls.zju.edu.cn/en/) of [Zhejiang University](http://www.zju.edu.cn "Zhejiang University"), China under the supervision of [Prof. Ping Ding](http://mypage.zju.edu.cn/personnelCard/pingding). He gained his B.S. in biology from [Zhejiang Normal University](http://www.zjnu.cn) in 2008. Xingfeng was a visiting student in [The Pimm Group](http://www.thepimmgroup.org]) at [Duke University](http://www.duke.edu) in 2012-2013 and he is interested in the effects of habitat fragmentation on species distributions and biodiversity conservations of animal communities on fragmented islands, and the implications of wildlife monitoring using camera traps on conservation managements. Broadly, his research interest lies in island biogeography, community ecology, conservation biology and ornithology. See more details in his [research](/en/about "About Me").</p>
+<p style="font-size: medium;">
+<a href="/" title="Xingfeng Si">Xingfeng</a> is currently a PhD candidate in animal ecology at the <a href="http://www.cls.zju.edu.cn/en/">College of Life Sciences</a> of <a href="http://www.zju.edu.cn" title="Zhejiang University">Zhejiang University</a>, China under the supervision of <a href="http://mypage.zju.edu.cn/personnelCard/pingding">Prof. Ping Ding</a>. He gained his B.S. in biology from <a href="http://www.zjnu.cn">Zhejiang Normal University</a> in 2008. Xingfeng was a visiting student in <a href="http://www.thepimmgroup.org]">The Pimm Group</a> at <a href="http://www.duke.edu">Duke University</a> in 2012-2013 and he is interested in the effects of habitat fragmentation on species distributions and biodiversity conservations of animal communities on fragmented islands, and the implications of wildlife monitoring using camera traps on conservation managements. Broadly, his research interest lies in island biogeography, community ecology, conservation biology and ornithology. See more details in his <a href="/en/about" title="About Me">research</a>.
+</p>
 
-<p style="font-size: medium;">Besides the academic researches, Xingfeng like reading, traveling and cycling. One of his important dreams is the 2200-km travel from [Chengdu to Lhasa](http://en.wikipedia.org/wiki/China_National_Highway_318) (the capital of Tibet) by bike. This journey will be a great opportunity to enjoy the unique landscape and discover the biodiversity on the [Qinghai-Tibet Plateau](http://en.wikipedia.org/wiki/Qinghai-Tibet_Plateau).</p>
+<p style="font-size: medium;">
+Besides the academic researches, Xingfeng like reading, traveling and cycling. One of his important dreams is the 2200-km travel from <a href="http://en.wikipedia.org/wiki/China_National_Highway_318">Chengdu to Lhasa</a> (the capital of Tibet) by bike. This journey will be a great opportunity to enjoy the unique landscape and discover the biodiversity on the <a href="http://en.wikipedia.org/wiki/Qinghai-Tibet_Plateau">Qinghai-Tibet Plateau</a>.
+</p>
+
 
 
 ---
