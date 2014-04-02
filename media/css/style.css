@@ -9,9 +9,8 @@
 * |\.|._)._)
 * --------------------------------- */
 
-@import url(http://fonts.googleapis.com/css?family=Galdeano);
 @import url(http://fonts.googleapis.com/css?family=Electrolize);
-body{font-size:14px;font-family:Calibri,"Lucida Grande","Lucida Sans Unicode","Galdeano","Hiragino Sans GB","Microsoft YaHei",Trebuchet,"Trebuchet MS",Tahoma,Verdana,sans-serif;color:#000000;background-color:#ffffff;}
+body{font-size:14px;font-family:"Lucida Grande","Lucida Sans Unicode","Galdeano","Hiragino Sans GB","Microsoft YaHei",Trebuchet,"Trebuchet MS",Tahoma,Verdana,sans-serif;color:#000000;background-color:#ffffff;}
 *{padding:0;margin: 0;border:none;outline:none;}
 a{color:#08c;text-decoration:none;}
 a:hover{color:#f00;text-decoration:underline;}
@@ -40,10 +39,10 @@ nav{font-family:"Electrolize",sans-serif;font-size:1.1em;text-transform:uppercas
 nav a{display:block;padding:.7em 1em;color:#000000;}
 nav a:hover{background-color:#ff0000;text-decoration:none;color:#f9f9f9;-webkit-transition:color .2s linear;}
 .post{padding:.5em 0em;}
-h1{font-family:"Galdeano","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.6em;line-height:40px;color:#000;}
-h2{font-family:"Galdeano","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.4em;line-height:40px;color:#111;}
-h3{font-family:"Galdeano","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.2em;line-height:40px;color:#222;}
-h4{font-family:"Galdeano","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1em;line-height:30px;color:#333;}
+h1{font-family:"Lucida Grande","Lucida Sans Unicode",,"Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.6em;line-height:40px;color:#000;}
+h2{font-family:"Lucida Grande","Lucida Sans Unicode",,"Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.4em;line-height:40px;color:#111;}
+h3{font-family:"Lucida Grande","Lucida Sans Unicode",,"Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1.2em;line-height:40px;color:#222;}
+h4{font-family:"Lucida Grande","Lucida Sans Unicode",,"Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:1em;line-height:30px;color:#333;}
 pre,code{font-family:Menlo,"Andale Mono",Consolas,"Courier New",Monaco,monospace;font-size:13px;}
 code{background-color:#F7F7F7;}
 embed,object,iframe{display:block;margin:4px auto;}
