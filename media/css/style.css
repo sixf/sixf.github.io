@@ -7,9 +7,9 @@
 * 
 * --------------------------------- */
 
-@import"//fonts.googleapis.com/css?family=Open+Sans:500";
+@import url(http://fonts.googleapis.com/css?family=Electrolize);
 body{
-  font-size:12px;
+  font-size:11px;
   font-family:Helvetica,Arial,"Hiragino Sans GB","Microsoft YaHei",sans-serif;
   color:#000000;
   background-color:#ffffff;
@@ -140,8 +140,8 @@ header{
 }
 
 nav{
-  font-family:"Open Sans",sans-serif;
-  font-size:1.5em;
+  font-family:"Electrolize",sans-serif;
+  font-size:1.4em;
   text-transform:uppercase;
   float:left;margin-left:-12em;
   width:9em;
