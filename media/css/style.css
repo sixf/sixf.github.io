@@ -7,7 +7,7 @@
 * 
 * --------------------------------- */
 
-@import"//fonts.googleapis.com/css?family=Open+Sans:700";
+@import"//fonts.googleapis.com/css?family=Open+Sans:500";
 body{
   font-size:12px;
   font-family:Helvetica,Arial,"Hiragino Sans GB","Microsoft YaHei",sans-serif;
@@ -141,7 +141,7 @@ header{
 
 nav{
   font-family:"Open Sans",sans-serif;
-  font-size:1.2em;
+  font-size:1.6em;
   text-transform:uppercase;
   float:left;margin-left:-12em;
   width:9em;
