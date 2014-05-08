@@ -1,3 +1,9 @@
+## this calculation depends on the hardware of your computer and the condition of your Internet.
+## Normally, it will need 20-30 minutes to run this loop.
+## Please check this algorithm periodically to ensure it is running,
+## because it will be interrupted due to timeout when the Internet is poor.
+## By Xingfeng Si. May 08, 2014
+
 require(RCurl)
 require(XML)
 
@@ -12,30 +18,6 @@ no.f=function(test){
   testsplit=strsplit(test,NULL)[[1]]
   en.res=paste(testsplit[testsplit%in%c(0:9)],collapse="")
   en.res
-}
-
-##### function 'days.fn' calculating number of days
-days.fn <- function(date) ##set the day format as "yyyy-mm-dd"
-{
-  bg.date=date[1]
-  ed.date=date[2]
-  bg.year<-substr(as.character(bg.date),1,4)
-  bg.month<-substr(as.character(bg.date),6,7)
-  bg.day<-substr(as.character(bg.date),9,10)
-  ed.year<-substr(as.character(ed.date),1,4)
-  ed.month<-substr(as.character(ed.date),6,7)
-  ed.day<-substr(as.character(ed.date),9,10)
-  bg.x <- paste(bg.year,bg.month,bg.day,sep="-")
-  ed.x <- paste(ed.year,ed.month,ed.day,sep="-")
-  bg.date <- as.POSIXlt(strptime(bg.x, "%Y-%m-%d"))
-  ed.date <- as.POSIXlt(strptime(ed.x, "%Y-%m-%d"))
-  diff.date <- ed.date-bg.date
-  format.day <- format(diff.date) #result format as "365 days"
-  diff.day <- substr(format.day,1,nchar(format.day)-5)
-  diff.day <- as.numeric(diff.day)+1 #add the current day
-  date.series <- seq(bg.date,ed.date,by="days")
-  format.date.series <- format(date.series,"%Y%m%d")
-  return(diff.day)
 }
 
 for (i in 1:npaper) {
@@ -79,8 +61,4 @@ for (i in 1:npaper) {
     print(paste(i,format(Sys.time(), "%H:%M:%S")))
 }
 
-## this calculation depends on the hardware of your computer and the condition of your Internet.
-## Normally, it will need 20-30 minutes to run this loop.
-## Please check this algorithm periodically to ensure it is running,
-## because it will be interrupted due to timeout when the Internet is poor.
-## By Xingfeng Si. May 08, 2014
+res # file ‘res’ includes all the information of each article
