@@ -1,0 +1,92 @@
+subject frequency proportion
+Ecology 80 21.92%
+Evolutionary Studies 51 13.97%
+Zoology 50 13.7%
+Psychiatry and Psychology 41 11.23%
+Bioinformatics 38 10.41%
+Computational Biology 37 10.14%
+Molecular Biology 34 9.32%
+Biodiversity 33 9.04%
+Animal Behavior 32 8.77%
+Biochemistry 32 8.77%
+Neuroscience 29 7.95%
+Microbiology 28 7.67%
+Marine Biology 27 7.4%
+Public Health 25 6.85%
+Conservation Biology 24 6.58%
+Genomics 24 6.58%
+Genetics 23 6.3%
+Environmental Sciences 22 6.03%
+Cell Biology 21 5.75%
+Epidemiology 20 5.48%
+Infectious Diseases 18 4.93%
+Agricultural Science 17 4.66%
+Biophysics 17 4.66%
+Entomology 17 4.66%
+Plant Science 17 4.66%
+Paleontology 16 4.38%
+Computational Science 15 4.11%
+Statistics 15 4.11%
+Ecosystem Science 14 3.84%
+Biogeography 11 3.01%
+Taxonomy 11 3.01%
+Biotechnology 10 2.74%
+Neurology 10 2.74%
+Parasitology 10 2.74%
+Pediatrics 10 2.74%
+Pharmacology 10 2.74%
+Science and Medical Education 10 2.74%
+Veterinary Medicine 10 2.74%
+Anatomy and Physiology 9 2.47%
+Aquaculture 9 2.47%
+Ethical Issues 9 2.47%
+Immunology 9 2.47%
+ Fisheries and Fish Science 8 2.19%
+Cognitive Disorders 8 2.19%
+Developmental Biology 8 2.19%
+Mathematical Biology 8 2.19%
+Bioengineering 7 1.92%
+Clinical Trials 7 1.92%
+Global Health 7 1.92%
+Oncology 7 1.92%
+Science Policy 7 1.92%
+Toxicology 7 1.92%
+Anaesthesiology and Pain Management 6 1.64%
+Diabetes and Endocrinology 6 1.64%
+Nutrition 6 1.64%
+Virology 6 1.64%
+Evidence Based Medicine 5 1.37%
+Radiology and Medical Imaging 5 1.37%
+Soil Science 5 1.37%
+Anthropology 4 1.1%
+Dermatology 4 1.1%
+Emergency and Critical Care 4 1.1%
+Gynecology and Obstetrics 4 1.1%
+Health Policy 4 1.1%
+Human-Computer Interaction 4 1.1%
+Humanâ€“Computer Interaction 4 1.1%
+Medical Genetics 4 1.1%
+Pathology 4 1.1%
+Dentistry 3 0.82%
+Drugs and Devices 3 0.82%
+HIV 3 0.82%
+Mycology 3 0.82%
+Nursing 3 0.82%
+Surgery and Surgical Specialties 3 0.82%
+Coupled Natural and Human Systems 2 0.55%
+Hematology 2 0.55%
+Histology 2 0.55%
+Internal Medicine 2 0.55%
+Translational Medicine 2 0.55%
+Allergy and Clinical Immunology 1 0.27%
+Cardiology 1 0.27%
+Child Health 1 0.27%
+Fisheries and Fish Science 1 0.27%
+Food Science and Technology 1 0.27%
+Gastroenterology and Hepatology 1 0.27%
+Geriatrics 1 0.27%
+Legal Issues 1 0.27%
+Metabolic Sciences 1 0.27%
+Orthopedics 1 0.27%
+Palliative Care 1 0.27%
+Respiratory Medicine 1 0.27%
