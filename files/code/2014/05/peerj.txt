@@ -1,7 +1,7 @@
-## this calculation depends on the hardware of your computer and the condition of your Internet.
-## Normally, it will need 20-30 minutes to run this loop.
-## Please check this algorithm periodically to ensure it is running,
-## because it will be interrupted due to timeout when the Internet is poor.
+## Normally, it will need 20-30 minutes to run this calculation, which depends on
+## the hardware of your computer and the condition of your Internet.
+## Please check this calculation periodically to ensure it is running,
+## because this algorithm will be stopped when the Internet is poor.
 ## By Xingfeng Si. May 08, 2014
 
 require(RCurl)
@@ -61,4 +61,4 @@ for (i in 1:npaper) {
     print(paste(i,format(Sys.time(), "%H:%M:%S")))
 }
 
-res # file ‘res’ includes all the information of each article
+res # file ‘res’ includes the needed information of each article
