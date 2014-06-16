@@ -25,7 +25,7 @@ Besides his academic researches, Xingfeng likes reading, traveling and cycling. 
 我以先声夺人昂首挺胸势权且做统一回答：
 
 1. 2014年9月；
-2. [均已被接收](http://sixf.org/cn/publication/)；
+2. [均已被接受](http://sixf.org/cn/publication/)；
 3. 待就业。
 
 若有后续问题，[留言板](/cn/guestbook)热烈欢迎您的一切留言。
