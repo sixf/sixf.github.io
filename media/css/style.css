@@ -77,6 +77,10 @@ blockquote p{
   padding:.5em 0;
 }
 
+table {
+    border: 1px solid black;
+}
+
 #container{
   width:600px;
   margin:2em auto;
