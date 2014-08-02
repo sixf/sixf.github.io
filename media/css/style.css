@@ -81,6 +81,10 @@ table, td, th {
     border: 1px solid black;
 }
 
+td {
+    padding: 15px;
+}
+
 #container{
   width:600px;
   margin:2em auto;
