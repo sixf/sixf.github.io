@@ -187,9 +187,10 @@ h2{
 }
 
 h3{
-  font-family: Calibri,"Microsoft YaHei",verdana,arial,"Lucida grande",tahoma,"Hiragino Sans GB",sans-serif;
+  font-family: "Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
   font-size:1.2em;
   line-height:40px;
+  font-style:italic;
   color:#222;
 }
 
