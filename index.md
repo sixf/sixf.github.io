@@ -30,4 +30,4 @@ Besides his academic researches, Xingfeng likes reading, traveling and cycling. 
 
 若有后续问题，[留言板](/cn/guestbook)热烈欢迎您的一切留言。
 
-至今，网购愈500本书，买的速度比看得快；会打7种球，但都不精通；跑了两次全程马拉松，都是卡着5小时关门点；单车骑行近2万里，幸好2013年底原装链条光荣退役。
+至今，网购愈500本书，买的速度比看得快；会打7种球，但都不精通；跑了[两次全程马拉松](http://sixf.org/files/images/2014/09/marathon.jpg)，都是卡着5小时关门点；单车骑行近2万里，幸好2013年底原装链条光荣退役。
