@@ -1,3 +1,8 @@
+# Detailed descriptions of the following code could be found in the webpage:
+# in English: http://sixf.org/en/2014/03/model-selection-multimodel-inference/
+# in Chinese: http://sixf.org/cn/2014/03/model-selection-multimodel-inference/
+# Author: Xingfeng Si. Updated on 2015/03/30.
+
 ### TEST 1
 
 library(glmulti)
