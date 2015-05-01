@@ -48,6 +48,7 @@ li{
 ol,ul{  
   margin-left: 2em;
   text-indent: -2em;
+  list-style-position: inside;
 }
 
 ol ul, ul ol, ul ul, ol ol {
