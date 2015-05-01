@@ -168,20 +168,11 @@ nav a:hover{
   -webkit-transition:color .2s linear;
 }
 
-ol {
-    counter-reset: foo;
-    display: table;
-}
-
-ol > li {
-    counter-increment: foo;
-    display: table-row;
-}
-
-ol > li::before {
-    content: counter(foo) ".";
-    display: table-cell; /* aha! */
-    text-align: right;
+.cssClass li {
+    list-style-type: disc;
+    list-style-position: inside;
+    text-indent: -1em;
+    padding-left: 1em;
 }
 
 .post{
