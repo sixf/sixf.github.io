@@ -46,7 +46,9 @@ li{
 }
 
 ol,ul{
-  list-style-position:inside;
+  margin-left: 0;
+  padding-left: 1em;
+  list-style-position: outside;
 }
 
 ol ul, ul ol, ul ul, ol ol {
@@ -166,12 +168,6 @@ nav a:hover{
   text-decoration:none;
   color:#f9f9f9;
   -webkit-transition:color .2s linear;
-}
-
-ol {
-margin-left: 0;
-padding-left: 0;
-list-style-position: outside;
 }
 
 .post{
