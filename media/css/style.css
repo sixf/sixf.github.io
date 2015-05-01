@@ -46,8 +46,8 @@ li{
 }
 
 ol,ul{  
-  padding-left: 1.5em;
-  list-style-position: inside;
+  margin-left: 2em;
+  text-indent: -2em;
 }
 
 ol ul, ul ol, ul ul, ol ol {
