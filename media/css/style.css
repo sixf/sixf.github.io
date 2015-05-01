@@ -47,7 +47,7 @@ li{
 
 ol,ul{  
   padding-left: 1.5em;
-  list-style-position: outside;
+  list-style-position: inside;
 }
 
 ol ul, ul ol, ul ul, ol ol {
