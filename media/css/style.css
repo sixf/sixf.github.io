@@ -168,6 +168,22 @@ nav a:hover{
   -webkit-transition:color .2s linear;
 }
 
+ol {
+    counter-reset: foo;
+    display: table;
+}
+
+ol > li {
+    counter-increment: foo;
+    display: table-row;
+}
+
+ol > li::before {
+    content: counter(foo) ".";
+    display: table-cell; /* aha! */
+    text-align: right;
+}
+
 .post{
   padding:.5em 0em;
 }
