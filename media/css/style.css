@@ -168,11 +168,10 @@ nav a:hover{
   -webkit-transition:color .2s linear;
 }
 
-.cssClass li {
-    list-style-type: disc;
-    list-style-position: inside;
-    text-indent: -1em;
-    padding-left: 1em;
+ol {
+margin-left: 0;
+padding-left: 3em;
+list-style-position: outside;
 }
 
 .post{
