@@ -86,7 +86,7 @@ text-decoration:none;
 
 a:hover {
 color:#17202A;
-text-decoration:none;
+text-decoration:underline;
 }
 
 p a {
@@ -518,4 +518,3 @@ float:left;
 .pager .next a,.pull-right {
 float:right;
 }
-
