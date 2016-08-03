@@ -30,12 +30,24 @@ font-size:100%;
 }
 
 a:focus {
+color:#626567;
+text-decoration:none;
 outline:5px auto 0;
 outline-offset:-2px;
 }
 
 a:hover,a:active {
-outline:0;
+  color:#17202A;
+  text-decoration:none;
+  color:#ffffff;
+  -webkit-opacity: 0.30;
+  -moz-opacity: 0.30;
+  opacity: 0.30;
+  -webkit-transition: opacity 3s linear;
+  -moz-transition: opacity 3s linear;
+  -ms-transition: opacity 3s linear;
+  -o-transition: opacity 3s linear;
+  transition: opacity 3s linear;
 }
 
 img {
@@ -361,9 +373,17 @@ background-color:#eee;
 }
 
 .nav>li>a:hover {
-text-decoration:none;
-color:#fff;
-background-color:#f00;
+background-color:#17202A;
+  text-decoration:none;
+  color:#ffffff;
+  -webkit-opacity: 0.30;
+  -moz-opacity: 0.30;
+  opacity: 0.30;
+  -webkit-transition: opacity 3s linear;
+  -moz-transition: opacity 3s linear;
+  -ms-transition: opacity 3s linear;
+  -o-transition: opacity 3s linear;
+  transition: opacity 3s linear;
 }
 
 .pills {
