@@ -80,12 +80,12 @@ margin:0;
 }
 
 a {
-color:#08c;
+color:#626567;
 text-decoration:none;
 }
 
 a:hover {
-color:#ff0000;
+color:#17202A;
 text-decoration:none;
 }
 
@@ -415,7 +415,7 @@ display:inline;
 
 .pager a {
 display:inline-block;
-background-color:#f8f8f6;
+background-color:#626567;
 border:1px solid #ddd;
 -webkit-border-radius:15px;
 -moz-border-radius:15px;
