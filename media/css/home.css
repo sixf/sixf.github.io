@@ -5,7 +5,7 @@ padding:20px;
 }
 
 h1 {
-font-family: normal, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, 'Lantinghei SC', 'Hiragino Sans GB', sans-serif;
+font-family: normal, sans-serif;
   -webkit-font-smoothing:antialiased;
   font-size: 2rem;
   font-weight: 700;
@@ -132,8 +132,8 @@ color:#000;
 }
 
 h1 {
-font-size:30px;
-line-height:60px;
+font-size:2rem;
+line-height:2;
 }
 
 h2 {
