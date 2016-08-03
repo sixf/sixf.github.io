@@ -81,7 +81,7 @@ margin:0;
 
 a {
 color:#626567;
-text-decoration:none;
+text-decoration:underline;
 }
 
 a:hover {
