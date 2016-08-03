@@ -3,10 +3,7 @@ layout: home
 ---
 
 
-**Welcome to [Chunlin’s](http://songchunlin.net "Chunlin Song") homepage!**
-
-
----
+**Welcome to [Chunlin Song](http://songchunlin.net "Chunlin Song")’s homepage!**
 
 <p><img src="http://7b1fc2.com1.z0.glb.clouddn.com/scl2016.jpg" title="Chunlin Song" align="right" /></p>
 
