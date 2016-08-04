@@ -3,13 +3,8 @@ layout: home
 ---
 
 
-<big>Welcome to Xingfeng’s homepage! </big>
+**Welcome to [Chunlin Song](http://songchunlin.net "Chunlin Song")’s homepage!**
+<img src="http://7b1fc2.com1.z0.glb.clouddn.com/scl2016.jpg" title="Chunlin Song" align="right"  width="298" height="238.5" />
+I am currently a PhD Student at the [Institute of Mountain Hazards and Environment](http://english.imde.cas.cn/), [Chinese Academy of Sciences](http://english.cas.cn/) and the [University of Chinese Academy of Sciences](http://english.ucas.ac.cn/). My major is Physical Geography and my research work is mainly about riverine carbon transport and hydrological processes. My research sites include [Qinghai-Tibet Plateau](https://en.wikipedia.org/wiki/Tibetan_Plateau) and [Yangtze River](https://en.wikipedia.org/wiki/Yangtze) upstream.
 
-[Xingfeng](http://sixf.org "Xingfeng Si") is currently a Postdoctoral Research Fellow at the [College of Life Sciences](http://www.cls.zju.edu.cn/en/), [Zhejiang University](http://www.zju.edu.cn/english/ "Zhejiang University"). He gained his PhD degree in ecology from [Zhejiang University](http://www.zju.edu.cn/english/ "Zhejiang University") in September 2014. He was a visiting student in [The Pimm Group](http://www.thepimmgroup.org) at the [Nicholas School of the Environment](http://nicholas.duke.edu), [Duke University](http://www.duke.edu) in 2012–2013. His research interests include the effects of habitat fragmentation on species distributions of animals on land-bridge islands, impacts of farmland abandonment on bird community, and biodiversity monitoring using camera traps. Broadly, he is interested in island biogeography, community ecology, conservation biology and ornithology. See more details in his [CV](http://sixf.org/files/others/cv_en.pdf).
-
-
----
-
-<p><img src="http://sixf.org/files/images/avatar.jpg" title="Xingfeng Si" align="right" /></p>
-
-您好，欢迎访问[斯幸峰](http://sixf.org "Xingfeng Si")的个人网站。鄙人上得了山，下得了湖，爬得了树，游得了水。出身乡野，寒窗二十余载，历经小学、初中、高中、本科和研究生五个阶段。很惭愧，没有正式上过幼儿园，传闻入园不久由于不遵守相关法律法规而被老师遣送回家(此处因年代久远已不可考)，故上小学后读了两回一年级。二十年后，毕业于[三墩职校](http://www.zju.edu.cn)，食性稍变，从专蛀书本到啃噬文献(xián)。目前，鄙人乃一介[博士后](http://zh.wikipedia.org/zh/博士後)，全职在[千岛湖](http://sixf.org/cn/pages/thousand-island-lake/)搞鸟，兼职在[古田山](http://sixf.org/cn/pages/gutianshan-reserve/)搞兽，正所谓禽兽通吃。预知内情，详见[我的个人简历](http://sixf.org/files/others/cv_zh.pdf)。
+**您好，欢迎访问[宋春林](http://songchunlin.net "Chunlin Song")的个人网站。** 我本科毕业于[茶馆大学](http://www.scu.edu.cn/)水文与水资源工程专业，目前为中科院成都某研究所博士研究生，自然地理学专业生态水文学方向。喜欢折腾，自我驱动，乐于解决问题，open-minded。正在努力成为合格的科研工作者。
