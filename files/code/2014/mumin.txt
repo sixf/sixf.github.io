@@ -1,0 +1,149 @@
+# Detailed descriptions of the following code could be found in the webpage:
+# in English: http://sixf.org/en/2014/03/model-selection-multimodel-inference/
+# in Chinese: http://sixf.org/cn/2014/03/model-selection-multimodel-inference/
+# Author: Xingfeng Si. Updated on 2015/03/30.
+
+### TEST 1
+
+library(glmulti)
+
+tilbird <- read.table("http://sixf.org/files/code/2014/tilbird.txt", h = T) # loading bird data
+str(tilbird) # check data structure
+
+cor.sig = function(test) { # correaltion with p values
+  res.cor = cor(test)
+  res.sig = res.cor
+  res.sig[abs(res.sig) > 0] = NA
+  nx = dim(test)[2]
+  for (i in 1:nx) {
+    for (j in 1:nx) {
+      res.cor1 = as.numeric(cor.test(test[, i], test[, j])$est)
+      res.sig1 = as.numeric(cor.test(test[, i], test[, j])$p.value)
+      if (res.sig1 <= 0.001) {
+        sig.mark = "***"
+      }
+      if (res.sig1 <= 0.01 & res.sig1 > 0.001) {
+        sig.mark = "** "
+      }
+      if (res.sig1 <= 0.05 & res.sig1 > 0.01) {
+        sig.mark = "*  "
+      }
+      if (res.sig1 > 0.05) {
+        sig.mark = "   "
+      }
+      if (res.cor1 > 0) {
+        res.sig[i, j] = paste(" ", as.character(round(res.cor1, 3)), 
+                              sig.mark, sep = "")
+      } else {
+        res.sig[i, j] = paste(as.character(round(res.cor1, 3)), sig.mark, 
+                              sep = "")
+      }
+    }
+  }
+  as.data.frame(res.sig)
+}
+
+cor.sig(tilbird[, 2:9]) # check the correlations between island variables
+
+# exclude significant correlated variables: Pe, PAR, SI, elev.
+global.model <- lm(birdspp ~ area + isolation + plants + habitats, data = tilbird)
+
+bird.model <- glmulti(global.model, level = 1, crit = "aicc") # model selection based on AICc
+
+summary(bird.model)
+
+# the best model
+lm9 <- lm(birdspp ~ area + habitats, data = tilbird)
+summary(lm9)
+
+summary(bird.model)$icvalue
+
+#list all candidate models
+lm1 <- lm(birdspp ~ area + isolation + plants + habitats, data = tilbird)
+lm2 <- lm(birdspp ~ isolation + plants + habitats, data = tilbird)
+lm3 <- lm(birdspp ~ area + plants + habitats, data = tilbird)
+lm4 <- lm(birdspp ~ area + isolation + habitats, data = tilbird)
+lm5 <- lm(birdspp ~ area + isolation + plants, data = tilbird)
+lm6 <- lm(birdspp ~ plants + habitats, data = tilbird)
+lm7 <- lm(birdspp ~ isolation + habitats, data = tilbird)
+lm8 <- lm(birdspp ~ isolation + plants, data = tilbird)
+lm9 <- lm(birdspp ~ area + habitats, data = tilbird)
+lm10 <- lm(birdspp ~ area + plants, data = tilbird)
+lm11 <- lm(birdspp ~ area + isolation, data = tilbird)
+lm12 <- lm(birdspp ~ area, data = tilbird)
+lm13 <- lm(birdspp ~ isolation, data = tilbird)
+lm14 <- lm(birdspp ~ plants, data = tilbird)
+lm15 <- lm(birdspp ~ habitats, data = tilbird)
+lm16 <- lm(birdspp ~ 1, data = tilbird)
+
+# model average
+library(MuMIn)
+lm.ave <- model.avg(lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, 
+                    lm12, lm13, lm14, lm15, lm16)
+summary(lm.ave)
+
+# estimate predicted model-averaged species richness on Island 1
+pred.mat <- matrix(NA, ncol = 16, nrow = 40, dimnames = list(paste("isl", 1:40, 
+   sep = ""), paste("lm", 1:16, sep = "")))
+pred.mat[, 1] <- predict(lm1)
+pred.mat[, 2] <- predict(lm2)
+pred.mat[, 3] <- predict(lm3)
+pred.mat[, 4] <- predict(lm4)
+pred.mat[, 5] <- predict(lm5)
+pred.mat[, 6] <- predict(lm6)
+pred.mat[, 7] <- predict(lm7)
+pred.mat[, 8] <- predict(lm8)
+pred.mat[, 9] <- predict(lm9)
+pred.mat[, 10] <- predict(lm10)
+pred.mat[, 11] <- predict(lm11)
+pred.mat[, 12] <- predict(lm12)
+pred.mat[, 13] <- predict(lm13)
+pred.mat[, 14] <- predict(lm14)
+pred.mat[, 15] <- predict(lm15)
+pred.mat[, 16] <- predict(lm16)
+bird.pred <- pred.mat %*% summary(lm.ave)$summary$Weight
+t(bird.pred) 
+
+# ALL IN ONE STEP
+dredge(global.model)
+
+
+### TEST 2
+
+tiltomb <- read.table("http://sixf.org/files/code/2014/tiltomb.txt", h = T)  #read the tomb data
+cor.sig(tiltomb[, -1])
+
+cor.sig(tiltomb[, c("plants", "habitats", "SI", "convex", "aspect", "Al", "sand")])
+
+global.model.tomb <- glm(tomb ~ plants + habitats + SI + convex + aspect + Al + 
+                           sand, family = binomial("logit"), data = tiltomb)
+tomb.model <- glmulti(global.model.tomb, level = 1, crit = "aicc")
+summary(tomb.model)
+
+# model average (loop)
+tomb7=tiltomb[, c("plants", "habitats", "SI", "convex", "aspect", "Al", "sand","tomb")]
+npar=7
+modPar=c("plants", "habitats", "SI", "convex", "aspect", "Al", "sand","tomb")
+
+unit=c(1,0)
+parEst=rep(unit,each=2^(npar-1))
+for (i in 2:npar){
+  unit=c(i,0)
+  parEst.tmp=rep(rep(unit,each=2^(npar-i)),2^(i-1))
+  parEst=cbind(parEst,parEst.tmp)
+}
+parMat=cbind(parEst[,1:npar],1)
+dimnames(parMat)=list(1:(2^npar),modPar)
+
+allModel=list()
+for (i in 1:(dim(parMat)[1]-1)) {
+  tomb7.tmp=tomb7[,parMat[i,]!=0]
+  allModel[[i]]=glm(tomb~.,family = binomial("logit"),data=tomb7.tmp)
+}
+
+modelC=glm(tomb~1,family = binomial("logit"),data=tomb7)
+lm.ave <- model.avg(allModel,modelC)
+summary(lm.ave)
+
+## ALL in ONE STEP
+dredge(global.model.tomb)
