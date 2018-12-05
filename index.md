@@ -8,11 +8,11 @@ I am a community ecologist and biogeographer. My research focuses on community a
 
 **Opportunities**
 
-I am leading the **Animal Ecology Lab** in the [School of Ecological and Environmental Sciences](http://www.sees.ecnu.edu.cn) at [East China Normal University](http://www.ecnu.edu.cn) in Shanghai, China. Our lab is recruiting postdoctoral researchers and graduate students in animal ecology, biodiveristy, community ecology, biogeography and ornithology. Please email me for more details.
+I am leading the **Animal Ecology Lab** in the [School of Ecological and Environmental Sciences](http://www.sees.ecnu.edu.cn) at [East China Normal University](http://www.ecnu.edu.cn) in Shanghai, China. Our lab is recruiting postdoctoral researchers and graduate students in animal ecology, biodiversity, community ecology, biogeography or ornithology. Please email me for more details.
 
 Email: sixf(at)des.ecnu.edu.cn
 
-Profiles: [Google Scholar](https://scholar.google.com/citations?user=wI1qfPsAAAAJ&hl=en) I [ResearchGate](https://www.researchgate.net/profile/Xingfeng_Si) I [Publons](https://publons.com/author/1198034/xingfeng-si#profile)
+Profiles: [Lab Homepage](https://faculty.ecnu.edu.cn/s/3971/main.jspy) I [Google Scholar](https://scholar.google.com/citations?user=wI1qfPsAAAAJ&hl=en) I [ResearchGate](https://www.researchgate.net/profile/Xingfeng_Si) I [Publons](https://publons.com/author/1198034/xingfeng-si#profile)
 
 ---
 
