@@ -12,7 +12,7 @@ I am leading the **Animal Ecology Lab** in the [School of Ecological and Environ
 
 Email: sixf(at)des.ecnu.edu.cn
 
-Profiles: [Lab Homepage](https://faculty.ecnu.edu.cn/s/3971/main.jspy) I [Google Scholar](https://scholar.google.com/citations?user=wI1qfPsAAAAJ&hl=en) I [ResearchGate](https://www.researchgate.net/profile/Xingfeng_Si) I [Publons](https://publons.com/author/1198034/xingfeng-si#profile)
+Profiles: [Lab Homepage](https://faculty.ecnu.edu.cn/s/3971/t/39269/main.jspy) I [Google Scholar](https://scholar.google.com/citations?user=wI1qfPsAAAAJ&hl=en) I [ResearchGate](https://www.researchgate.net/profile/Xingfeng_Si) I [Publons](https://publons.com/author/1198034/xingfeng-si#profile)
 
 ---
 
