@@ -2,7 +2,7 @@
 layout: home
 ---
 
-<p><img src="http://sixf.org/files/images/silablogo.jpg" width="150" title="Si Lab" align="right" /></p>
+<p><img src="http://sixf.org/files/images/silablogo.jpg" width="300" title="Si Lab" align="right" /></p>
 
 Welcome to the Si Lab at East China Normal University, Shanghai, China.
 
