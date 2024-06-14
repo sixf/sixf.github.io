@@ -2,6 +2,8 @@
 layout: home
 ---
 
+<p><img src="http://sixf.org/files/images/silablogo.jpg" width="150" title="Si Lab" align="right" /></p>
+
 Welcome to the Si Lab at East China Normal University, Shanghai, China.
 
 We are community ecologists and biogeographers. Our research focuses on community assembly of island faunas, biodiversity change after habitat fragmentation, and wildlife monitoring using camera traps, with broad interests in biogeography, community ecology, conservation biology, ornithology, and urban ecology.
