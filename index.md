@@ -10,7 +10,7 @@ We are community ecologists and biogeographers. Our research focuses on communit
 
 Contact: Dr. Xingfeng Si
 
-Email: sixf(at)des.ecnu.edu.cn; sixingfeng(at)gmail.com
+Email: [sixf(at)des.ecnu.edu.cn](mailto:sixf@des.ecnu.edu.cn); [sixingfeng(at)gmail.com](mailto:sixingfeng@gmail.com)
 
 Profiles: [Lab Homepage](https://faculty.ecnu.edu.cn/_s31/sxf2/main.psp) I [Google Scholar](https://scholar.google.com/citations?user=wI1qfPsAAAAJ&hl=en) I [ResearchGate](https://www.researchgate.net/profile/Xingfeng_Si)
 
