@@ -4,12 +4,12 @@
 * @link http://sixf.org
 * @contributor linghua.zhang@me.com
 * @update 2014-04-03
-* 
+* @update font as arial 2026-03-27
 * --------------------------------- */
 
 body{
   font-size:11px;
-  font-family:"Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
+  font-family:arial,sans-serif;
   color:#000000;
   background-color:#ffffff;
 }
@@ -175,21 +175,21 @@ nav a:hover{
 }
 
 h1{
-  font-family:"Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
+  font-family:arial,sans-serif;
   font-size:1.4em;
   line-height:40px;
   color:#000;
 }
 
 h2{
-  font-family:"Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
+  font-family:arial,sans-serif;
   font-size:1.4em;
   line-height:40px;
   color:#111;
 }
 
 h3{
-  font-family: "Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
+  font-family:arial,sans-serif;
   font-size:1.2em;
   line-height:40px;
   font-style:italic;
@@ -197,7 +197,7 @@ h3{
 }
 
 h4{
-  font-family:"Lucida grande",tahoma,"Hiragino Sans GB","Microsoft YaHei",verdana,arial,sans-serif;
+  font-family:arial,sans-serif;
   font-size:1em;
   line-height:30px;
   color:#333;
